@@ -10,13 +10,35 @@
       {
         "name": "Users",
         "schemaName": "public",
-        "x": -116,
-        "y": 4
+        "x": 0,
+        "y": 0
+      },
+      {
+        "name": "Tasks",
+        "schemaName": "public",
+        "x": 288,
+        "y": 0
       }
     ],
     "tableGroupCollapseStates": [],
     "stickyNoteLayouts": [],
-    "referencePaths": []
+    "referencePaths": [
+      {
+        "firstFieldNames": [
+          "id"
+        ],
+        "firstTableName": "Users",
+        "firstSchemaName": "public",
+        "firstRelation": "1",
+        "secondFieldNames": [
+          "user_id"
+        ],
+        "secondTableName": "Tasks",
+        "secondSchemaName": "public",
+        "secondRelation": "*",
+        "checkPoints": []
+      }
+    ]
   },
   "views": {}
 }

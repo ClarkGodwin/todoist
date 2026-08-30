@@ -1,6 +1,6 @@
 //This is a .dbml file to visualize the database. It uses the dbdiagram.io official vscode extension for highlight, suggestion and the visualisation using the open preview icon on the line with the split editor icon
 
-Enum statuses {
+Enum user_statuses {
     user
     admin
 
@@ -12,12 +12,26 @@ Table Users {
     email varchar(20) [unique, not null]
     email_verified_at date
     password varchar(255) [not null]
-    status statuses [default: statuses.user]
-    created_at date
-    updated_at date
+    status statuses [default: user_statuses.user]
+    created_at datetime
+    updated_at datetime
+}
+
+Enum task_statuses {
+    to_do
+    being_done
+    done
+
 }
 
 Table Tasks {
     id int [primary key, increment]
-
+    user_id int [ref: >Users.id]
+    title varchar(15) [not null]
+    description text [not null]
+    day datetime [not null]
+    status task_statuses [default: task_statuses.to_do]
+    created_at datetime
+    updated_at datetime
 }
+
