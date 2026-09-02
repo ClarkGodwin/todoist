@@ -10,6 +10,7 @@ Table Users {
     id int [primary key, increment]
     name varchar(15) [not null]
     email varchar(20) [unique, not null]
+    email_verified boolean [default: false]
     email_verified_at date
     password varchar(255) [not null]
     status statuses [default: user_statuses.user]
