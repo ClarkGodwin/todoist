@@ -49,6 +49,7 @@ class Task extends Model
 
     protected function casts(): array {
         return [
+            'email_verified' => 'boolean',
             'status' => TaskStatus::class,
         ];
     }

@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Enums\TaskStatus;
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +20,11 @@ class TaskFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::inRandomOrder('id')->first()->id,
+            'title' => $this->faker->word(),
+            'description' => $this->faker->sentence(),
+            'day' => $this->faker->now(),
+            'status' => $this->faker->randomElement(TaskStatus::cases())->value,
         ];
     }
 }
