@@ -15,7 +15,7 @@ Table Users {
     password varchar(255) [not null]
     status statuses [default: user_statuses.user]
     created_at datetime
-    updated_at datetime
+    updated_at datetime 
 }
 
 Enum task_statuses {
