@@ -23,7 +23,7 @@ class TaskFactory extends Factory
             'user_id' => User::inRandomOrder('id')->first()->id,
             'title' => $this->faker->word(),
             'description' => $this->faker->sentence(),
-            'day' => $this->faker->now(),
+            'day' => now(),
             'status' => $this->faker->randomElement(TaskStatus::cases())->value,
         ];
     }
