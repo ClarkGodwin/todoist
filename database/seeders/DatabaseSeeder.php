@@ -12,7 +12,8 @@ class DatabaseSeeder extends Seeder
     use WithoutModelEvents;
 
     /**
-     * Seed the application's database.
+     * Seed the application's database to populate it with fake data.
+     * run : php artisan db:seed
      */
     public function run(): void
     {

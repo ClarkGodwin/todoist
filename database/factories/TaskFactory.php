@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends Factory<Task>
+ * determines through which rules fake datas will be created when we instanciate this class
+ * for example with: Task::factory()->count(4)->create()
  */
 class TaskFactory extends Factory
 {

@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 
 /**
  * @extends Factory<User>
+ * determines through which rules fake datas will be created when we instanciate this class
+ * for example with: Task::factory()->count(4)->create()
  */
 class UserFactory extends Factory
 {
