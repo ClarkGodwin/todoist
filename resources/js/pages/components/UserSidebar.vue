@@ -19,16 +19,19 @@ const items = [
         'title' : 'Dashboard',
         'url' : '#',
         'icon' : LayoutDashboard,
+        'active' : true,
     },
     {
         'title' : 'Tasks',
         'url' : '#',
         'icon' : ListTodo,
+        'active' : false,
     },
     {
         'title' : 'Settings',
         'url' : '#',
         'icon' : Settings,
+        'active' : false,
     },
 ]
 
@@ -36,12 +39,21 @@ const items = [
 
 <template>
     <SidebarProvider>
-        <Sidebar>
-            <SidebarHeader>
-                <slot name="header"></slot>
+        <Sidebar collapsible="icon" variant="floating">
+            <SidebarHeader class="bg-surface-200">
+                <!-- <slot name="header"></slot> -->
+                <SidebarMenu>
+                    <SidebarMenu>
+                        <SidebarMenuItem>
+                            <SidebarMenuButton as-child class="hover:text-frosted">
+                                <slot name="header"></slot>
+                            </SidebarMenuButton>
+                        </SidebarMenuItem>
+                    </SidebarMenu>
+                </SidebarMenu>
             </SidebarHeader>
 
-            <SidebarContent>
+            <SidebarContent class="bg-surface-200">
                 <SidebarGroup>
                     <SidebarGroupLabel>Pages</SidebarGroupLabel>
                     <SidebarGroupContent>
