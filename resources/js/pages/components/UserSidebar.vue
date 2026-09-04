@@ -1,4 +1,6 @@
 <script setup lang="ts">
+
+//NEEDED COMPONENT TO USE THE SIDEBAR COMPONENTS FROM SHADCN-VUE, TAKE A LOOK AT THE ONLINE DOC
 import SidebarProvider from '@/components/ui/sidebar/SidebarProvider.vue';
 import Sidebar from '@/components/ui/sidebar/Sidebar.vue';
 import SidebarHeader from '@/components/ui/sidebar/SidebarHeader.vue';
@@ -16,8 +18,18 @@ import { Component, LayoutDashboard, ListTodo, Settings, UserRound } from '@luci
 import { User } from '@/types';
 import { reactive } from 'vue';
 
+/*
+From the following line, I get the user's informations from any of the pages inside the user folder.
+Why am I doing it ?
+Well, to simply follow the Do Not Repeat Yourself Rule. All the pages in user and folder will share the same sidebar, so that the browser doesn't re-render the sidebar every time, I'm going to use this component as the layout for every component inside the user folder.
+
+So, I sent the user, from the UserController, to the dashboard component, as an example, and then send it to the layout
+*/
 defineProps<{user : User}>()
 
+/**
+ * List of the links in the sidebar. It makes it easier to manage
+ */
 const items = reactive([
     {
         'id' : 1,
@@ -42,6 +54,11 @@ const items = reactive([
     },
 ])
 
+/**
+ *
+ * @param itemId
+ * When I click on a link in the sidebar, this function is called, with the id the corresponding item (or link, call it whatever you want) , give the value true to its active property and false to all the others
+ */
 function switchActive(itemId : number){
     items.forEach(item => {
         if(item.id === itemId){
@@ -59,12 +76,12 @@ function switchActive(itemId : number){
     <SidebarProvider>
         <Sidebar collapsible="icon" variant="floating">
             <SidebarHeader >
-                <!-- <slot name="header"></slot> -->
                 <SidebarMenu>
                     <SidebarMenu>
                         <SidebarMenuItem>
                             <SidebarMenuButton as-child class="">
                                 <div class="flex gap-3 text-frosted text-bold">
+                                    <!-- the component tag will act like the icon in :is -->
                                     <component :is="UserRound"/>
                                     <span>{{ user.name }}</span>
                                 </div>
