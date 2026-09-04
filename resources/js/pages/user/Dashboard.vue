@@ -8,12 +8,5 @@ defineProps<{user : User}>()
 </script>
 
 <template>
-    <UserSidebar>
-        <template #header>
-            <div class="flex gap-3 text-frosted text-bold">
-                <UserRound/>
-                <span>{{ user.name }}</span>
-            </div>
-        </template>
-    </UserSidebar>
+    <UserSidebar :user="user"/>
 </template>
