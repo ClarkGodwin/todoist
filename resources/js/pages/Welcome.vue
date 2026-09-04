@@ -9,6 +9,6 @@ defineProps<{ users: User[] }>()
 
 <template>
     <div v-for="user in users" :key="user.id">
-        <Link :href="route('user.index', {id: user.id})">{{ user.name }}</Link>
+        <Link :href="route('user.index', {id: user.id})" class="ml-20 text-blue-400">{{ user.name }}</Link>
     </div>
 </template>
