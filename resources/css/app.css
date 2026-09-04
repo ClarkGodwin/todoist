@@ -3,7 +3,7 @@
 /*---break---*/
 
 @import 'tailwindcss';
-@import "tw-animate-css";
+/* @import "tw-animate-css"; */
 /*---break---*/
 @custom-variant dark (&:is(.dark *));
 

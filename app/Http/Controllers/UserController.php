@@ -10,6 +10,6 @@ class UserController extends Controller
 {
     public function index(Request $request, string $id){
         $user = User::find($id);
-        return Inertia::render('UserPage', compact('user'));
+        return Inertia::render('user/Dashboard', compact('user'));
     }
 }
