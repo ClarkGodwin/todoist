@@ -53,7 +53,8 @@
 
     /*CUSTOM SIZES*/
 
-    --text-sidebar-header-content : 30px;
+    --text-sidebar-header-content : clamp(1.125rem,0.995rem + 0.648vw,1.563rem);
+    --text-sidebar-body-content : clamp(0.875rem, 0.819rem + 0.278vw, 1.063rem);
 
     /* Dark Mode Text (White to Gray Gradients) */
     --color-dark-text-main: #f8fafc;

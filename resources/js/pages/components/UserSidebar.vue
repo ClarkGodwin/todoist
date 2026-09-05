@@ -84,10 +84,10 @@ switchActive()
                 <SidebarMenu>
                     <SidebarMenu>
                         <SidebarMenuItem>
-                            <SidebarMenuButton as-child class="">
-                                <div class="flex gap-3 text-frosted text-bold">
+                            <SidebarMenuButton as-child class="active:text-frosted">
+                                <div class="flex gap-3 text-frosted font-semibold">
                                     <!-- the component tag will act like the icon in :is -->
-                                    <UserRound class="size-(--text-sidebar-header-content)" />
+                                    <UserRound class="size-(--text-sidebar-header-content)!" />
                                     <span class="text-sidebar-header-content">{{ user.name }}</span>
                                 </div>
                             </SidebarMenuButton>
@@ -98,7 +98,7 @@ switchActive()
 
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel>Pages</SidebarGroupLabel>
+                    <SidebarGroupLabel class="text-sidebar-body-content font-semibold">Pages</SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
                             <!-- displaying the links on the sidebar
@@ -106,9 +106,9 @@ switchActive()
                             <SidebarMenuItem v-for="item in items" :key="item.id">
                                 <SidebarMenuButton as-child class="mb-2">
                                     <Link :href="route(item.url, { id: user.id })"
-                                        :class="{ 'bg-frosted text-white text-bold': item.active, 'hover:bg-surface-300 hover:text-frosted': !item.active }">
-                                        <component :is="item.icon" />
-                                        <span>{{ item.title }}</span>
+                                        :class="{ 'bg-frosted text-white font-semibold': item.active, 'hover:bg-surface-300 hover:text-frosted': !item.active }">
+                                        <component :is="item.icon" class="size-(--text-sidebar-body-content)!" />
+                                        <span class="text-sidebar-body-content">{{ item.title }}</span>
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
