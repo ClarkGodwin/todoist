@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use App\Models\User;
+use Inertia\Inertia;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
-        //
+        // $task = Task::find($id);
+        // $user = $task->user;
+        $user = User::find($id);
+        return Inertia::render('user/Tasks', compact('user'));
     }
 
     /**

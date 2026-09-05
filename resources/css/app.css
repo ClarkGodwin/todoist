@@ -50,6 +50,11 @@
     --color-dark-surface-400: #374151;
     /* Lighter gray: For inputs and focused elements */
 
+
+    /*CUSTOM SIZES*/
+
+    --text-sidebar-header-content : 30px;
+
     /* Dark Mode Text (White to Gray Gradients) */
     --color-dark-text-main: #f8fafc;
     --color-dark-text-muted: #94a3b8;
