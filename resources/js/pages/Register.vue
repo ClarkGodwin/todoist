@@ -7,6 +7,7 @@ export default {
 <script setup lang="ts">
 import GuestNavbar from './components/GuestNavbar.vue';
 import Input from './components/Input.vue';
+import Form from './components/Form.vue';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
@@ -37,21 +38,8 @@ const inputs = [
 </script>
 
 <template>
-    <div class="bg-surface-300 rounded-2xl p-[20px] mt-[60px] w-[600px] mx-auto flex flex-col gap-[30px]">
-        <!-- page title -->
-        <h2 class="text-frosted font-bold text-center text-[25px]">Register a new account</h2>
-
-        <!-- rendering the inputs -->
-        <div v-for="input in inputs" :key="input.id">
-            <Input :type="input.type" :name="input.name" />
-        </div>
-
-        <!-- submission -->
-        <button class="bg-frosted text-white font-bold rounded-xl p-[10px]">Submit</button>
-
-        <div>
-            Already have an account ?
-            <Link :href="route('login')" class="text-frosted underline hover:no-underline">Login</Link>
-        </div>
-    </div>
+    <Form title="Register a new account" :inputs="inputs">
+        Already have an account ?
+        <Link :href="route('login')" class="text-frosted underline hover:no-underline">Login</Link>
+    </Form>
 </template>

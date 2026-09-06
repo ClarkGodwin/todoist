@@ -7,10 +7,13 @@ import { Link } from '@inertiajs/vue3';
 
 <template>
     <div class="w-guestNavbar-navbar mx-auto my-3">
-        <navbar class="flex justify-between ">
+        <div id="navbar" class="flex justify-between ">
+            <!-- the big title on the left -->
             <Link :href="route('home')">
                 <h1 class="text-frosted font-bold text-guestNavbar-navbar-h1">N_Todoist</h1>
             </Link>
+
+            <!-- login and register links on the right -->
             <div class="flex gap-3 *:hover:cursor-pointer">
                 <Link :href="route('login')"
                     class="flex gap-2 items-center text-white bg-frosted px-guestNavbar-navbar-links-px rounded-xl ">
@@ -23,7 +26,7 @@ import { Link } from '@inertiajs/vue3';
                         Register</Link>
                 </button>
             </div>
-        </navbar>
+        </div>
 
         <slot></slot>
 
