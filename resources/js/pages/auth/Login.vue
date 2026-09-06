@@ -5,19 +5,13 @@ export default {
 </script>
 
 <script setup lang="ts">
-import GuestNavbar from './components/GuestNavbar.vue';
-import Input from './components/Input.vue';
-import Form from './components/Form.vue';
+import GuestNavbar from '../components/GuestNavbar.vue';
+import Form from '../components/Form.vue';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
 //list to go through to easily render the inputs using the Input component from the component folder
 const inputs = [
-    {
-        id: 1,
-        type: 'text',
-        name: 'Name',
-    },
     {
         id: 2,
         type: 'email',
@@ -34,7 +28,14 @@ const inputs = [
 
 <template>
     <Form title="Login to your account" :inputs="inputs">
-        No account yet ?
-        <Link :href="route('register')" class="text-frosted underline hover:no-underline">Register</Link>
+        <div>
+            No account yet ?
+            <Link :href="route('register')" class="text-frosted underline hover:no-underline">Register</Link>
+        </div>
+
+        <div class="mt-3">
+            Forgot your password ?
+            <Link :href="route('password.forgotten')" class="text-frosted underline hover:no-underline">Click here</Link>
+        </div>
     </Form>
 </template>

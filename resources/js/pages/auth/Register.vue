@@ -5,9 +5,8 @@ export default {
 </script>
 
 <script setup lang="ts">
-import GuestNavbar from './components/GuestNavbar.vue';
-import Input from './components/Input.vue';
-import Form from './components/Form.vue';
+import GuestNavbar from '../components/GuestNavbar.vue';
+import Form from '../components/Form.vue';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 

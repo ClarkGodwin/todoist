@@ -29,9 +29,9 @@ defineProps<{
 </script>
 
 <template>
-    <div class="bg-surface-300 rounded-2xl p-[20px] mt-[60px] w-[600px] mx-auto flex flex-col gap-[30px]">
+    <div class="bg-surface-300 rounded-2xl p-form-p mt-form-mt w-form mx-auto flex flex-col gap-[30px] text-form-content">
         <!-- page title -->
-        <h2 class="text-frosted font-bold text-center text-[25px]">{{ title }}</h2>
+        <h2 class="text-frosted font-bold text-center text-form-h2">{{ title }}</h2>
 
         <!-- rendering the inputs -->
         <div v-for="input in inputs" :key="input.id">
@@ -40,7 +40,7 @@ defineProps<{
         </div>
 
         <!-- submission -->
-        <button class="bg-frosted text-white font-bold rounded-xl p-[10px] hover:cursor-pointer">Submit</button>
+        <button class="bg-frosted text-white font-bold rounded-xl p-form-button-p hover:cursor-pointer">Submit</button>
 
         <!-- If there are any other information to display under the submission button like for the register and login page -->
         <div>
