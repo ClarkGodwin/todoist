@@ -10,6 +10,7 @@ import Input from './components/Input.vue';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
+//list to go through to easily render the inputs using the Input component from the component folder
 const inputs = [
     {
         id: 1,
@@ -37,11 +38,15 @@ const inputs = [
 
 <template>
     <div class="bg-surface-300 rounded-2xl p-[20px] mt-[60px] w-[600px] mx-auto flex flex-col gap-[30px]">
+        <!-- page title -->
         <h2 class="text-frosted font-bold text-center text-[25px]">Register a new account</h2>
+
+        <!-- rendering the inputs -->
         <div v-for="input in inputs" :key="input.id">
             <Input :type="input.type" :name="input.name" />
         </div>
 
+        <!-- submission -->
         <button class="bg-frosted text-white font-bold rounded-xl p-[10px]">Submit</button>
 
         <div>
