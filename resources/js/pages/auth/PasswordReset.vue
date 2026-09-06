@@ -13,14 +13,14 @@ import { route } from 'ziggy-js';
 //list to go through to easily render the inputs using the Input component from the component folder
 const inputs = [
     {
-        id: 1,
-        type: 'email',
-        name: 'E-mail',
+        id: 3,
+        type: 'password',
+        name: 'Password',
     },
     {
         id: 2,
         type: 'password',
-        name: 'Password',
+        name: 'Confirm',
     },
 ]
 
