@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->string('description');
-            $table->dateTime('day');
+            $table->date('day');
             $table->string('status')->default(TaskStatus::ToDo->value);
             $table->timestamps();
         });

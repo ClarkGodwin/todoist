@@ -118,5 +118,6 @@ switchActive()
             </SidebarContent>
         </Sidebar>
         <SidebarTrigger />
+        <slot></slot>
     </SidebarProvider>
 </template>

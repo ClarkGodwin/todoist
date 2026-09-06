@@ -51,10 +51,20 @@
     /* Lighter gray: For inputs and focused elements */
 
 
-    /*CUSTOM SIZES*/
+    /*=======================CUSTOM SIZES=======================================*/
 
+    /*TEXT*/
     --text-sidebar-header-content : clamp(1.125rem,0.995rem + 0.648vw,1.563rem);
     --text-sidebar-body-content : clamp(0.875rem, 0.819rem + 0.278vw, 1.063rem);
+
+    --text-welcome-navbar-h1 : clamp(1.313rem,1.183rem + 0.648vw,1.75rem);
+    --text-welcome-navbar-links : clamp(0.75rem, 0.676rem + 0.37vw, 1rem);
+    --text-welcome-p : clamp(0.875rem, 0.838rem + 0.185vw, 1rem);
+
+    /*WIDTH*/
+    --width-welcome-navbar : clamp(18.75rem,2.083rem + 83.333vw,75rem);
+    --width-welcome-p : clamp(17.5rem,8.981rem + 42.593vw,46.25rem);
+    --spacing-welcome-navbar-links-px : clamp(0.75rem, 0.676rem + 0.37vw, 1rem);
 
     /* Dark Mode Text (White to Gray Gradients) */
     --color-dark-text-main: #f8fafc;
