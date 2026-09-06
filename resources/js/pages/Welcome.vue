@@ -5,10 +5,7 @@ export default{
 </script>
 
 <script setup lang="ts">
-import { User } from '@/types';
 import GuestNavbar from './components/GuestNavbar.vue';
-defineProps<{ users: User[] }>()
-
 </script>
 
 <template>
