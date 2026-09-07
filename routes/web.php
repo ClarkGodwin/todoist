@@ -10,5 +10,7 @@ Route::inertia('login', 'auth/Login')->name('login');
 Route::inertia('register','auth/Register')->name('register');
 Route::inertia('password_forgotten','auth/PasswordForgotten')->name('password.forgotten');
 
+Route::post('register', [UserController::class,'create'])->name('register');
+
 Route::get('/user/{id}/dashboard', [UserController::class,'index'])->name('user.dashboard');
 Route::get('/user/{id}/tasks', [TaskController::class,'index'])->name('user.tasks');

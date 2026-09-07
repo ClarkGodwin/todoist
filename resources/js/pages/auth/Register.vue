@@ -37,7 +37,7 @@ const inputs = [
 </script>
 
 <template>
-    <Form title="Register a new account" :inputs="inputs">
+    <Form title="Register a new account" :inputs="inputs" action="register">
         Already have an account ?
         <Link :href="route('login')" class="text-frosted underline hover:no-underline">Login</Link>
     </Form>

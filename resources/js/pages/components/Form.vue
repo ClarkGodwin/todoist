@@ -11,7 +11,7 @@ export default {
 <script setup lang="ts">
 import GuestNavbar from './GuestNavbar.vue';
 import Input from './Input.vue';
-import { Link } from '@inertiajs/vue3';
+import { Form } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
 //the custom built in ts interface type containing the name of the label/input and the type of the input
@@ -23,13 +23,14 @@ interface InputElement {
 
 defineProps<{
     title : string
+    action : string
     inputs : InputElement[]
 }>()
 
 </script>
 
 <template>
-    <div class="bg-surface-300 rounded-2xl p-form-p mt-form-mt w-form mx-auto flex flex-col gap-[30px] text-form-content">
+    <Form :action="route(action)" method="post" class="bg-surface-300 rounded-2xl p-form-p mt-form-mt w-form mx-auto flex flex-col gap-[30px] text-form-content">
         <!-- page title -->
         <h2 class="text-frosted font-bold text-center text-form-h2">{{ title }}</h2>
 
@@ -46,5 +47,5 @@ defineProps<{
         <div>
             <slot></slot>
         </div>
-    </div>
+    </Form>
 </template>

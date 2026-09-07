@@ -72,6 +72,7 @@
     --width-label : clamp(5.063rem,4.896rem + 0.833vw,5.625rem);
     --width-input : clamp(11.813rem, 5.313rem + 32.5vw, 33.75rem);
     --spacing-input-px : clamp(0.5rem, 0.37rem + 0.648vw, 0.938rem);
+    --spacing-input-py : clamp(0.25rem,0.176rem + 0.37vw,0.5rem);
 
     /*for the Form Component*/
     --width-form : clamp(16.875rem, 10.764rem + 30.556vw, 37.5rem);

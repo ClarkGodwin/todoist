@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-    <div class="flex justify-between *:py-[8px]">
+    <div class="flex justify-between *:py-input-py">
         <label :for="name" class="w-label text-frosted">{{ name }} </label>
         <input :type="type" :id="name" class="bg-surface-100 px-input-px outline-none w-input rounded-2xl" :name="name">
     </div>
