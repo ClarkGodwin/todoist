@@ -21,17 +21,12 @@ import { Link, usePage } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
 let page = usePage()
-let test = 'Dashboard'
-console.log(page.url.includes(test.toLowerCase()))
 
-/*
-From the following line, I get the user's informations from any of the pages inside the user folder.
-Why am I doing it ?
-Well, to simply follow the Do Not Repeat Yourself Rule. All the pages in user and folder will share the same sidebar, so that the browser doesn't re-render the sidebar every time, I'm going to use this component as the layout for every component inside the user folder.
-
-So, I sent the user, from the UserController, to the dashboard component, as an example, and then send it to the layout
-*/
-defineProps<{ user: User }>()
+defineProps<{
+    auth: {
+        user: User
+    }
+ }>()
 
 /**
  * List of the links in the sidebar. It makes it easier to manage
@@ -40,17 +35,17 @@ const items = reactive([
     {
         'id': 1,
         'title': 'Dashboard',
-        'url': 'user.dashboard',
+        'url': 'dashboard',
         'icon': LayoutDashboard,
         'active': true,
     },
-    {
-        'id': 2,
-        'title': 'Tasks',
-        'url': 'user.tasks',
-        'icon': ListTodo,
-        'active': false,
-    },
+    // {
+    //     'id': 2,
+    //     'title': 'Tasks',
+    //     'url': 'tasks',
+    //     'icon': ListTodo,
+    //     'active': false,
+    // },
     // {
     //     'id' : 3,
     //     'title' : 'Settings',
@@ -88,7 +83,7 @@ switchActive()
                                 <div class="flex gap-3 text-frosted font-semibold">
                                     <!-- the component tag will act like the icon in :is -->
                                     <UserRound class="size-(--text-sidebar-header-content)!" />
-                                    <span class="text-sidebar-header-content">{{ user.name }}</span>
+                                    <span class="text-sidebar-header-content">{{ auth.user.name }}</span>
                                 </div>
                             </SidebarMenuButton>
                         </SidebarMenuItem>
@@ -105,7 +100,7 @@ switchActive()
                             the links come from the items variable in the script tag -->
                             <SidebarMenuItem v-for="item in items" :key="item.id">
                                 <SidebarMenuButton as-child class="mb-2">
-                                    <Link :href="route(item.url, { id: user.id })"
+                                    <Link :href="route(item.url)"
                                         :class="{ 'bg-frosted text-white font-semibold': item.active, 'hover:bg-surface-300 hover:text-frosted': !item.active }">
                                         <component :is="item.icon" class="size-(--text-sidebar-body-content)!" />
                                         <span class="text-sidebar-body-content">{{ item.title }}</span>
