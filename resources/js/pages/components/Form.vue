@@ -18,6 +18,7 @@ import { route } from 'ziggy-js';
 interface InputElement {
     id: number,
     type: string,
+    label: string,
     name: string,
 }
 
@@ -25,19 +26,20 @@ defineProps<{
     title : string
     action : string
     inputs : InputElement[]
+    errors? : Record<string, string>
 }>()
 
 </script>
 
 <template>
-    <Form :action="route(action)" method="post" class="bg-surface-300 rounded-2xl p-form-p mt-form-mt w-form mx-auto flex flex-col gap-[30px] text-form-content">
+    <Form :action="route(action)" method="post" #default="{errors: formErrors}" class="bg-surface-300 rounded-2xl p-form-p mt-form-mt w-form mx-auto flex flex-col gap-[30px] text-form-content">
         <!-- page title -->
         <h2 class="text-frosted font-bold text-center text-form-h2">{{ title }}</h2>
 
         <!-- rendering the inputs -->
         <div v-for="input in inputs" :key="input.id">
             <!-- composed of the label and input tag styled -->
-            <Input :type="input.type" :name="input.name" />
+            <Input :type="input.type" :name="input.name" :label="input.label" :error="formErrors[input.name] || errors?.[input.name]" />
         </div>
 
         <!-- submission -->

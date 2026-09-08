@@ -10,24 +10,31 @@ import Form from '../components/Form.vue';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
+//to catch the errors sent by the request controller and pass them down to the custom Form component
+defineProps<{
+    errors? : Record<string, string>
+}>()
+
 //list to go through to easily render the inputs using the Input component from the component folder
 const inputs = [
     {
         id: 1,
         type: 'email',
-        name: 'E-mail',
+        name: 'email',
+        label: 'E-mail',
     },
     {
         id: 2,
         type: 'password',
-        name: 'Password',
+        name: 'password',
+        label: 'Password',
     },
 ]
 
 </script>
 
 <template>
-    <Form title="Login to your account" :inputs="inputs">
+    <Form action="login" title="Login to your account" :inputs="inputs" :errors="errors">
         <div>
             No account yet ?
             <Link :href="route('register')" class="text-frosted underline hover:no-underline">Register</Link>
