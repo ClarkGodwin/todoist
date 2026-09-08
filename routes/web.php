@@ -16,7 +16,7 @@ Route::post('login', [UserController::class, 'login'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
     Route::inertia('dashboard', 'user/Dashboard')->name('dashboard');
-    Route::inertia('/email/verify','auth/EmailVerify')->name('verification.notice');
+    Route::inertia('dashboard/email/verify','auth/EmailVerify')->name('verification.notice');
 });
 
 

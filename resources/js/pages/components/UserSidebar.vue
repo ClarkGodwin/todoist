@@ -23,9 +23,12 @@ import { route } from 'ziggy-js';
 let page = usePage()
 
 defineProps<{
+    //to get the authenticated user
     auth: {
         user: User
     }
+    //to get the active link so that a special style will be applied to it
+    active: string
  }>()
 
 /**
@@ -37,7 +40,6 @@ const items = reactive([
         'title': 'Dashboard',
         'url': 'dashboard',
         'icon': LayoutDashboard,
-        'active': true,
     },
     // {
     //     'id': 2,
@@ -46,7 +48,7 @@ const items = reactive([
     //     'icon': ListTodo,
     //     'active': false,
     // },
-    // {
+    // {page.url
     //     'id' : 3,
     //     'title' : 'Settings',
     //     'url' : '#',
@@ -55,64 +57,52 @@ const items = reactive([
     // },
 ])
 
-/**
- * When I navigate in a page containing the sidebar, this function is called, checks on which page the user is through the url and the title property of the items reactive variable , give the value true to its active property and false to all the others
- */
-function switchActive() {
-    items.forEach(item => {
-        if(page.url.includes(item.title.toLowerCase())){
-            item.active = true
-        }
-        else{
-            item.active = false
-        }
-    });
-}
-switchActive()
-
 </script>
 
 <template>
-    <SidebarProvider>
-        <Sidebar collapsible="icon" variant="floating">
-            <SidebarHeader>
-                <SidebarMenu>
+    <div class="bg-surface-300">
+        <SidebarProvider>
+            <Sidebar collapsible="icon" variant="floating">
+                <SidebarHeader>
                     <SidebarMenu>
-                        <SidebarMenuItem>
-                            <SidebarMenuButton as-child class="active:text-frosted">
-                                <div class="flex gap-3 text-frosted font-semibold">
-                                    <!-- the component tag will act like the icon in :is -->
-                                    <UserRound class="size-(--text-sidebar-header-content)!" />
-                                    <span class="text-sidebar-header-content">{{ auth.user.name }}</span>
-                                </div>
-                            </SidebarMenuButton>
-                        </SidebarMenuItem>
-                    </SidebarMenu>
-                </SidebarMenu>
-            </SidebarHeader>
-
-            <SidebarContent>
-                <SidebarGroup>
-                    <SidebarGroupLabel class="text-sidebar-body-content font-semibold">Pages</SidebarGroupLabel>
-                    <SidebarGroupContent>
                         <SidebarMenu>
-                            <!-- displaying the links on the sidebar
-                            the links come from the items variable in the script tag -->
-                            <SidebarMenuItem v-for="item in items" :key="item.id">
-                                <SidebarMenuButton as-child class="mb-2">
-                                    <Link :href="route(item.url)"
-                                        :class="{ 'bg-frosted text-white font-semibold': item.active, 'hover:bg-surface-300 hover:text-frosted': !item.active }">
-                                        <component :is="item.icon" class="size-(--text-sidebar-body-content)!" />
-                                        <span class="text-sidebar-body-content">{{ item.title }}</span>
-                                    </Link>
+                            <SidebarMenuItem>
+                                <SidebarMenuButton as-child class="active:text-frosted">
+                                    <div class="flex gap-3 text-frosted font-semibold">
+                                        <!-- the component tag will act like the icon in :is -->
+                                        <UserRound class="size-(--text-sidebar-header-content)!" />
+                                        <span class="text-sidebar-header-content">{{ auth.user.name }}</span>
+                                    </div>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                         </SidebarMenu>
-                    </SidebarGroupContent>
-                </SidebarGroup>
-            </SidebarContent>
-        </Sidebar>
-        <SidebarTrigger />
-        <slot></slot>
-    </SidebarProvider>
+                    </SidebarMenu>
+                </SidebarHeader>
+
+                <SidebarContent>
+                    <SidebarGroup>
+                        <SidebarGroupLabel class="text-sidebar-body-content font-semibold">Pages</SidebarGroupLabel>
+                        <SidebarGroupContent>
+                            <SidebarMenu>
+                                <!-- displaying the links on the sidebar
+                                the links come from the items variable in the script tag -->
+                                <SidebarMenuItem v-for="item in items" :key="item.id">
+                                    <SidebarMenuButton as-child class="mb-2">
+                                        <!-- item.url == active , is used to see which one of the links is active to apply a special style to it -->
+                                        <Link :href="route(item.url)"
+                                            :class="{ 'bg-frosted text-white font-semibold': item.url == active, 'hover:bg-surface-300 hover:text-frosted': item.url != active  }">
+                                            <component :is="item.icon" class="size-(--text-sidebar-body-content)!" />
+                                            <span class="text-sidebar-body-content">{{ item.title }}</span>
+                                        </Link>
+                                    </SidebarMenuButton>
+                                </SidebarMenuItem>
+                            </SidebarMenu>
+                        </SidebarGroupContent>
+                    </SidebarGroup>
+                </SidebarContent>
+            </Sidebar>
+            <SidebarTrigger />
+            <slot></slot>
+        </SidebarProvider>
+    </div>
 </template>

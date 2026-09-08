@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-    layout: UserSidebar
+    layout: [UserSidebar, DashboardInfo]
 }
 </script>
 
@@ -8,10 +8,11 @@ export default {
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 import UserSidebar from '../components/UserSidebar.vue';
+import DashboardInfo from '../components/DashboardInfo.vue';
 </script>
 
 <template>
-    <p class="mt-8 w-welcome-p text-welcome-p">
+    <p class=''>
         If you have just registered, a verification link has been sent to your email address. <br>
         Check your email (or junk) to verify it or if you don't see it, you can just
         <Link :href="route('home')" class="text-frosted underline hover:no-underline hover:cursor-pointer">click here </Link>

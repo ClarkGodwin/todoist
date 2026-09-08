@@ -82,6 +82,15 @@
     --text-form-content : clamp(0.813rem, 0.757rem + 0.278vw, 1rem);
     --spacing-form-button-p: clamp(0.625rem, 0.625rem + 0vw, 0.625rem);
 
+    /*for the DashboardInfo component*/
+    --width-dashboardInfo : clamp(15.625rem,5.44rem + 50.926vw,50rem);
+    --spacing-dashboardInfo-mt : clamp(2.5rem, 2.13rem + 1.852vw, 3.75rem);
+    --spacing-dashboardInfo-px : clamp(0.75rem, 0.509rem + 1.204vw, 1.563rem);
+    --spacing-dashboardInfo-py : clamp(0.938rem, 0.475rem + 2.315vw, 2.5rem);
+    --text-dashboardInfo : clamp(0.875rem, 0.801rem + 0.37vw, 1.125rem);
+    --text-dashboardInfo-h2 : clamp(1.25rem, 0.88rem + 1.852vw, 2.5rem);
+    --spacing-dashboardInfo-h2-mb : clamp(0.625rem, 0.514rem + 0.556vw, 1rem);
+
 
     /* Dark Mode Text (White to Gray Gradients) */
     --color-dark-text-main: #f8fafc;
