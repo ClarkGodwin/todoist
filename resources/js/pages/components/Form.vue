@@ -32,7 +32,7 @@ defineProps<{
 </script>
 
 <template>
-    <Form :action="route(action)" method="post" #default="{errors: formErrors}" class="bg-surface-300 rounded-2xl p-form-p mt-form-mt w-form mx-auto flex flex-col gap-[30px] text-form-content">
+    <Form :action="route(action)" method="post" #default="{errors: formErrors}" class="bg-surface-300 rounded-2xl p-form-p mt-form-mt w-form mx-auto flex flex-col gap-7.5 text-form-content">
         <!-- page title -->
         <h2 class="text-frosted font-bold text-center text-form-h2">{{ title }}</h2>
 
