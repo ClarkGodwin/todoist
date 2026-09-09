@@ -1,21 +1,29 @@
 <script lang="ts">
 export default {
-    layout: [UserSidebar, DashboardInfo]
+    layout: {
+        sidebar: [UserSidebar, {active: 'dashboard'}],
+        content: [DashboardInfo, {title: 'Email verification notice'}]
+    }
 }
 </script>
 
 <script setup lang="ts">
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 import UserSidebar from '../components/UserSidebar.vue';
 import DashboardInfo from '../components/DashboardInfo.vue';
+
+const page = usePage()
+
 </script>
 
 <template>
     <p class=''>
         If you have just registered, a verification link has been sent to your email address. <br>
-        Check your email (or junk) to verify it or if you don't see it, you can just
-        <Link :href="route('home')" class="text-frosted underline hover:no-underline hover:cursor-pointer">click here </Link>
+        Check your email (or junk) to verify it . <br>
+        If you don't see it, you can just
+        <Link :href="route('verification.send')" method="post" class="text-frosted underline hover:no-underline hover:cursor-pointer">click here </Link>
         to send a new one
     </p>
+    <div>{{ page.flash.success }}</div>
 </template>

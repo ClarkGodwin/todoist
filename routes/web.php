@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::inertia('/', 'Welcome')->name('home');
 Route::inertia('login', 'auth/Login')->name('login');
@@ -37,7 +38,8 @@ Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 
 
+    Inertia::flash('success', 'Verification link sent!');
 
-    return back()->with('message', 'Verification link sent!');
+    return back();
 
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');

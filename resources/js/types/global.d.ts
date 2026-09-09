@@ -13,8 +13,14 @@ declare module 'vite/client' {
     }
 }
 
+export interface FlashMessages {
+    success?: string;
+    error?: string;
+}
+
 declare module '@inertiajs/core' {
     export interface InertiaConfig {
+        flashDataType: FlashMessages;
         sharedPageProps: {
             name: string;
             auth: Auth;
