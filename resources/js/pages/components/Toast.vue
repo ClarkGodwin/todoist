@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { usePage } from '@inertiajs/vue3';
 import { CircleCheck } from '@lucide/vue';
+
+const page = usePage()
+
+console.log(page.flash.success)
 
 </script>
 
