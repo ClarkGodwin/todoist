@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 /*---break---*/
 
@@ -54,42 +53,49 @@
     /*=======================CUSTOM SIZES=======================================*/
 
     /*for the UserSidebar component*/
-    --text-sidebar-header-content : clamp(1.125rem,0.995rem + 0.648vw,1.563rem);
-    --text-sidebar-body-content : clamp(0.875rem, 0.819rem + 0.278vw, 1.063rem);
+    --text-sidebar-header-content: clamp(1.125rem, 0.995rem + 0.648vw, 1.563rem);
+    --text-sidebar-body-content: clamp(0.875rem, 0.819rem + 0.278vw, 1.063rem);
 
 
     /*for the GuestNavbar component*/
-    --width-guestNavbar-navbar : clamp(18.75rem,2.083rem + 83.333vw,75rem);
-    --spacing-guestNavbar-navbar-links-px : clamp(0.75rem, 0.676rem + 0.37vw, 1rem);
-    --text-guestNavbar-navbar-h1 : clamp(1.313rem,1.183rem + 0.648vw,1.75rem);
-    --text-guestNavbar-navbar-links : clamp(0.75rem, 0.676rem + 0.37vw, 1rem);
+    --width-guestNavbar-navbar: clamp(18.75rem, 2.083rem + 83.333vw, 75rem);
+    --spacing-guestNavbar-navbar-links-px: clamp(0.75rem, 0.676rem + 0.37vw, 1rem);
+    --text-guestNavbar-navbar-h1: clamp(1.313rem, 1.183rem + 0.648vw, 1.75rem);
+    --text-guestNavbar-navbar-links: clamp(0.75rem, 0.676rem + 0.37vw, 1rem);
 
     /*for the Welcome component*/
-    --text-welcome-p : clamp(0.875rem, 0.838rem + 0.185vw, 1rem);
-    --width-welcome-p : clamp(17.5rem,8.981rem + 42.593vw,46.25rem);
+    --text-welcome-p: clamp(0.875rem, 0.838rem + 0.185vw, 1rem);
+    --width-welcome-p: clamp(17.5rem, 8.981rem + 42.593vw, 46.25rem);
 
     /*for the Input Component*/
-    --width-label : clamp(5.063rem,4.896rem + 0.833vw,5.625rem);
-    --width-input : clamp(11.813rem, 5.313rem + 32.5vw, 33.75rem);
-    --spacing-input-px : clamp(0.5rem, 0.37rem + 0.648vw, 0.938rem);
-    --spacing-input-py : clamp(0.25rem,0.176rem + 0.37vw,0.5rem);
+    --width-label: clamp(5.063rem, 4.896rem + 0.833vw, 5.625rem);
+    --width-input: clamp(11.813rem, 5.313rem + 32.5vw, 33.75rem);
+    --spacing-input-px: clamp(0.5rem, 0.37rem + 0.648vw, 0.938rem);
+    --spacing-input-py: clamp(0.25rem, 0.176rem + 0.37vw, 0.5rem);
 
     /*for the Form Component*/
-    --width-form : clamp(16.875rem, 10.764rem + 30.556vw, 37.5rem);
-    --spacing-form-mt : clamp(2.188rem, 1.725rem + 2.315vw, 3.75rem);
-    --spacing-form-p : clamp(0.938rem, 0.845rem + 0.463vw, 1.25rem);
-    --text-form-h2 : clamp(1.125rem, 0.995rem + 0.648vw, 1.563rem);
-    --text-form-content : clamp(0.813rem, 0.757rem + 0.278vw, 1rem);
+    --width-form: clamp(16.875rem, 10.764rem + 30.556vw, 37.5rem);
+    --spacing-form-mt: clamp(2.188rem, 1.725rem + 2.315vw, 3.75rem);
+    --spacing-form-p: clamp(0.938rem, 0.845rem + 0.463vw, 1.25rem);
+    --text-form-h2: clamp(1.125rem, 0.995rem + 0.648vw, 1.563rem);
+    --text-form-content: clamp(0.813rem, 0.757rem + 0.278vw, 1rem);
     --spacing-form-button-p: clamp(0.625rem, 0.625rem + 0vw, 0.625rem);
 
     /*for the DashboardInfo component*/
-    --width-dashboardInfo : clamp(15.625rem,5.44rem + 50.926vw,50rem);
-    --spacing-dashboardInfo-mt : clamp(2.5rem, 2.13rem + 1.852vw, 3.75rem);
-    --spacing-dashboardInfo-px : clamp(0.75rem, 0.509rem + 1.204vw, 1.563rem);
-    --spacing-dashboardInfo-py : clamp(0.938rem, 0.475rem + 2.315vw, 2.5rem);
-    --text-dashboardInfo : clamp(0.875rem, 0.801rem + 0.37vw, 1.125rem);
-    --text-dashboardInfo-h2 : clamp(1.25rem, 0.88rem + 1.852vw, 2.5rem);
-    --spacing-dashboardInfo-h2-mb : clamp(0.625rem, 0.514rem + 0.556vw, 1rem);
+    --width-dashboardInfo: clamp(15.625rem, 5.44rem + 50.926vw, 50rem);
+    --spacing-dashboardInfo-mt: clamp(2.5rem, 2.13rem + 1.852vw, 3.75rem);
+    --spacing-dashboardInfo-px: clamp(0.75rem, 0.509rem + 1.204vw, 1.563rem);
+    --spacing-dashboardInfo-py: clamp(0.938rem, 0.475rem + 2.315vw, 2.5rem);
+    --text-dashboardInfo: clamp(0.875rem, 0.801rem + 0.37vw, 1.125rem);
+    --text-dashboardInfo-h2: clamp(1.25rem, 0.88rem + 1.852vw, 2.5rem);
+    --spacing-dashboardInfo-h2-mb: clamp(0.625rem, 0.514rem + 0.556vw, 1rem);
+
+    /*for the Toast component*/
+    --spacing-toast-left-position: clamp(0.625rem,-2.894rem + 17.593vw,12.5rem);
+    --spacing-toast-top-position: clamp(1.25rem, 1.25rem + 0vw, 1.25rem);
+    --spacing-toast-p: clamp(0.313rem, 0.183rem + 0.648vw, 0.75rem);
+    --spacing-toast-gap: clamp(0.313rem, 0.183rem + 0.648vw, 0.75rem);
+    --text-toast: clamp(0.75rem, 0.676rem + 0.37vw, 1rem);
 
 
     /* Dark Mode Text (White to Gray Gradients) */
@@ -169,6 +175,7 @@
         calc(var(--radius) + 4px);
 
 }
+
 /*---break---*/
 :root {
     --radius:
@@ -237,6 +244,7 @@
         oklch(0.708 0 0);
 
 }
+
 /*---break---*/
 .dark {
     --background:
@@ -303,14 +311,16 @@
         oklch(0.556 0 0);
 
 }
+
 /*---break---*/
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
 
     }
-  body {
-    @apply bg-background text-foreground;
+
+    body {
+        @apply bg-background text-foreground;
 
     }
 

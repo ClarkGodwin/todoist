@@ -105,10 +105,7 @@ const items = reactive([
             </Sidebar>
             <SidebarTrigger />
 
-            <div class="relative">
-                <Toast />
-            </div>
-
+            <Toast />
             <slot></slot>
         </SidebarProvider>
     </div>
