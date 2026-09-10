@@ -10,7 +10,7 @@ use Inertia\Inertia;
 Route::inertia('/', 'Welcome')->name('home');
 // Route::inertia('login', 'auth/Login')->name('login');
 Route::get('login', function (){
-    Inertia::flash('success','this test is successfull');
+    Inertia::flash('error','this test is successfull');
     return Inertia::render('auth/Login');
 })->name('login');
 Route::inertia('register', 'auth/Register')->name('register');
