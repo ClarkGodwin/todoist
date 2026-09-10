@@ -20,6 +20,8 @@ import { reactive } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
+import Toast from './Toast.vue';
+
 let page = usePage()
 
 defineProps<{
@@ -29,7 +31,7 @@ defineProps<{
     }
     //to get the active link so that a special style will be applied to it
     active: string
- }>()
+}>()
 
 /**
  * List of the links in the sidebar. It makes it easier to manage
@@ -68,11 +70,11 @@ const items = reactive([
                         <SidebarMenu>
                             <SidebarMenuItem>
                                 <SidebarMenuButton as-child class="active:text-frosted">
-                                    <div class="flex gap-3 text-frosted font-semibold">
+                                    <Link :href="route('home')" class="flex gap-3 text-frosted font-semibold">
                                         <!-- the component tag will act like the icon in :is -->
                                         <UserRound class="size-(--text-sidebar-header-content)!" />
                                         <span class="text-sidebar-header-content">{{ auth.user.name }}</span>
-                                    </div>
+                                    </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
                         </SidebarMenu>
@@ -90,7 +92,7 @@ const items = reactive([
                                     <SidebarMenuButton as-child class="mb-2">
                                         <!-- item.url == active , is used to see which one of the links is active to apply a special style to it -->
                                         <Link :href="route(item.url)"
-                                            :class="{ 'bg-frosted text-white font-semibold': item.url == active, 'hover:bg-surface-300 hover:text-frosted': item.url != active  }">
+                                            :class="{ 'bg-frosted text-white font-semibold': item.url == active, 'hover:bg-surface-300 hover:text-frosted': item.url != active }">
                                             <component :is="item.icon" class="size-(--text-sidebar-body-content)!" />
                                             <span class="text-sidebar-body-content">{{ item.title }}</span>
                                         </Link>
@@ -102,6 +104,11 @@ const items = reactive([
                 </SidebarContent>
             </Sidebar>
             <SidebarTrigger />
+
+            <div class="relative">
+                <Toast />
+            </div>
+
             <slot></slot>
         </SidebarProvider>
     </div>
