@@ -28,6 +28,4 @@ toastStore.detectIfFlashMessageWasSentAndDisplayToastForTwoSeconds()
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, error. Cupiditate, ipsa. Dignissimos asperiores
     officia tempora placeat fugiat officiis soluta accusamus ex nesciunt ullam odit totam, nisi, velit aspernatur
     doloribus!
-    <br>
-    <Link :href="route('test.toast')">Test toast</Link>
 </template>

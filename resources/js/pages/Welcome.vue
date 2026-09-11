@@ -21,8 +21,6 @@ toastStore.detectIfFlashMessageWasSentAndDisplayToastForTwoSeconds()
         done and done and move on with your life. <br>
         For those who can easily forget like myself ,
         <Link :href="route('login')" class="text-frosted font-medium underline hover:no-underline hover:cursor-pointer">LOGIN AND USE IT</Link>
-
-        <br>
         <Link :href="route('test.toast')">Test toast</Link>
     </p>
 
