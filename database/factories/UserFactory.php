@@ -33,7 +33,6 @@ class UserFactory extends Factory
             'email_verified' => fake()->boolean(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'status' => fake()->randomElement(UserStatus::cases())->value,
             'remember_token' => Str::random(10),
         ];
     }
