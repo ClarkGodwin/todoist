@@ -21,21 +21,11 @@ else if(page.flash.error){
     errorVisible.value = true
 }
 
-const visible = ref(true)
-
-function displayToastForTwoSeconds(){
-    setTimeout(() => {
-        visible.value = false
-
-    }, 2000);
-}
-
-displayToastForTwoSeconds()
 
 </script>
 
 <template>
-    <div v-if="visible" class="relative left-toast-left-position ">
+    <div class="relative left-toast-left-position ">
         <div
             class="font-bold text-white text-toast h-fit flex items-center justify-center gap-toast-gap  p-toast-p rounded-xl fixed top-toast-top-position"
             :class="background"

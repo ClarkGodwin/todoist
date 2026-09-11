@@ -4,11 +4,14 @@ import { route } from 'ziggy-js';
 import { Link } from '@inertiajs/vue3';
 
 import Toast from './Toast.vue';
+import { useToastStore } from '@/stores/useToastStore.js';
+
+const toastStore = useToastStore()
 
 </script>
 
 <template>
-    <Toast/>
+    <Toast v-if="toastStore.toastVisible"/>
     <div class="w-guestNavbar-navbar mx-auto my-3">
         <div id="navbar" class="flex justify-between ">
             <!-- the big title on the left -->

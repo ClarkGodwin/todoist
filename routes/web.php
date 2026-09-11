@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+Route::get("/store/test", function () {
+    Inertia::flash("error","This test is successfull");
+    return back();
+})->name("test.toast");
+
 Route::inertia('/', 'Welcome')->name('home');
 // Route::inertia('login', 'auth/Login')->name('login');
 Route::get('login', function (){
