@@ -5,13 +5,9 @@ export default{
 </script>
 
 <script setup lang="ts">
-import { useToastStore } from '@/stores/useToastStore.js';
 import GuestNavbar from './components/GuestNavbar.vue';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
-
-const toastStore = useToastStore()
-toastStore.detectIfFlashMessageWasSentAndDisplayToastForTwoSeconds()
 
 </script>
 
@@ -21,7 +17,6 @@ toastStore.detectIfFlashMessageWasSentAndDisplayToastForTwoSeconds()
         done and done and move on with your life. <br>
         For those who can easily forget like myself ,
         <Link :href="route('login')" class="text-frosted font-medium underline hover:no-underline hover:cursor-pointer">LOGIN AND USE IT</Link>
-        <Link :href="route('test.toast')">Test toast</Link>
     </p>
 
 </template>

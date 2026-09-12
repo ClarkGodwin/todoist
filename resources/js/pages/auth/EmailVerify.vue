@@ -13,8 +13,6 @@ import { route } from 'ziggy-js';
 import UserSidebar from '../components/UserSidebar.vue';
 import DashboardInfo from '../components/DashboardInfo.vue';
 
-const page = usePage()
-
 </script>
 
 <template>
@@ -25,5 +23,4 @@ const page = usePage()
         <Link :href="route('verification.send')" method="post" class="text-frosted underline hover:no-underline hover:cursor-pointer">click here </Link>
         to send a new one
     </p>
-    <div>{{ page.flash.success }}</div>
 </template>

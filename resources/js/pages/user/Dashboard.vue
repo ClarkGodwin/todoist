@@ -8,17 +8,11 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { User } from '@/types';
-import { Task } from '@/types/tasks.js';
 import DashboardInfo from '../components/DashboardInfo.vue';
 import UserSidebar from '../components/UserSidebar.vue';
 
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
-import { useToastStore } from '@/stores/useToastStore.js';
-
-const toastStore = useToastStore()
-toastStore.detectIfFlashMessageWasSentAndDisplayToastForTwoSeconds()
 </script>
 
 <template>

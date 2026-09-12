@@ -21,9 +21,6 @@ import { Link, usePage } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
 import Toast from './Toast.vue';
-import { useToastStore } from '@/stores/useToastStore.js';
-
-const toastStore = useToastStore()
 
 defineProps<{
     //to get the authenticated user
@@ -106,7 +103,7 @@ const items = reactive([
             </Sidebar>
             <SidebarTrigger />
 
-            <Toast v-if="toastStore.toastVisible" />
+            <Toast/>
             <slot></slot>
         </SidebarProvider>
     </div>
