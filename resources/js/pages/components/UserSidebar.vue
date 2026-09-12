@@ -41,13 +41,13 @@ const items = reactive([
         'url': 'dashboard',
         'icon': LayoutDashboard,
     },
-    // {
-    //     'id': 2,
-    //     'title': 'Tasks',
-    //     'url': 'tasks',
-    //     'icon': ListTodo,
-    //     'active': false,
-    // },
+    {
+        'id': 2,
+        'title': 'Tasks',
+        'url': 'tasks',
+        'icon': ListTodo,
+        'active': false,
+    },
     // {page.url
     //     'id' : 3,
     //     'title' : 'Settings',
@@ -60,7 +60,7 @@ const items = reactive([
 </script>
 
 <template>
-    <div class="bg-surface-300">
+    <div class="bg-surface-400">
         <SidebarProvider>
             <Sidebar collapsible="icon" variant="floating">
                 <SidebarHeader>
@@ -90,7 +90,7 @@ const items = reactive([
                                     <SidebarMenuButton as-child class="mb-2">
                                         <!-- item.url == active , is used to see which one of the links is active to apply a special style to it -->
                                         <Link :href="route(item.url)"
-                                            :class="{ 'bg-frosted text-white font-semibold': item.url == active, 'hover:bg-surface-300 hover:text-frosted': item.url != active }">
+                                            :class="{ 'bg-frosted text-white font-semibold active:bg-surface-300 active:text-frosted': item.url == active, 'hover:bg-surface-300 hover:text-frosted': item.url != active }">
                                             <component :is="item.icon" class="size-(--text-sidebar-body-content)!" />
                                             <span class="text-sidebar-body-content">{{ item.title }}</span>
                                         </Link>
@@ -103,7 +103,9 @@ const items = reactive([
             </Sidebar>
             <SidebarTrigger />
 
-            <Toast/>
+            <!-- this toast is uses to displays toast messages when one of the components using it as a layout has a flash message sent to it -->
+            <Toast />
+
             <slot></slot>
         </SidebarProvider>
     </div>

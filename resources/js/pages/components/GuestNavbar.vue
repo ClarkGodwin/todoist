@@ -7,6 +7,7 @@ import Toast from './Toast.vue';
 </script>
 
 <template>
+    <!-- this toast is uses to displays toast messages when one of the components using it as a layout has a flash message sent to it -->
     <Toast/>
     <div class="w-guestNavbar-navbar mx-auto my-3">
         <div id="navbar" class="flex justify-between ">

@@ -6,7 +6,7 @@ defineProps<{
 </script>
 
 <template>
-    <div class="h-fit bg-surface-100 mt-dashboardInfo-mt w-dashboardInfo mx-auto rounded-xl px-dashboardInfo-px py-dashboardInfo-py text-dashboardInfo">
+    <div class="h-fit bg-surface-300 mt-dashboardInfo-mt w-dashboardInfo mx-auto rounded-xl px-dashboardInfo-px py-dashboardInfo-py text-dashboardInfo">
         <h2 class="font-bold text-frosted text-center text-dashboardInfo-h2 mb-dashboardInfo-h2-mb">{{ title }}</h2>
         <slot></slot>
     </div>

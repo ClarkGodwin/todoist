@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { CircleCheck, CircleX } from '@lucide/vue';
-import { ref, watch } from 'vue';
+import {ref, watch } from 'vue';
 
 const page = usePage()
 
@@ -12,17 +12,18 @@ const toastText = ref('') //the text displayed on the toast
 const successVisible = ref(false) //to show the circlecheck icon if we have a success flash message
 const errorVisible = ref(false) //to show the circlex icon if we have a error flash message
 
-watch(
+watch( //to watch if any flash message was sent to one of the components with the toast component mounted in one of their layout and displays it for two seconds
     () => page.flash,
     (flash) => {
-        if (page.flash.success) {
+        if (!flash?.success && !flash?.error) return
+        if (flash.success) {
             background.value = 'bg-frosted'
-            toastText.value = page.flash.success
+            toastText.value = flash.success
             successVisible.value = true
         }
-        else if (page.flash.error) {
+        else if (flash.error) {
             background.value = 'bg-red-500'
-            toastText.value = page.flash.error
+            toastText.value = flash.error
             errorVisible.value = true
         }
         toastVisible.value = true
@@ -32,7 +33,6 @@ watch(
     },
     { deep: true }
 )
-
 
 </script>
 
