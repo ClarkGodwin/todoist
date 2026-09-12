@@ -15,7 +15,7 @@ const errorVisible = ref(false) //to show the circlex icon if we have a error fl
 watch( //to watch if any flash message was sent to one of the components with the toast component mounted in one of their layout and displays it for two seconds
     () => page.flash,
     (flash) => {
-        if (!flash?.success && !flash?.error) return
+        if (!flash?.success && !flash?.error && !flash?.status) return
         if (flash.success) {
             background.value = 'bg-frosted'
             toastText.value = flash.success
@@ -24,6 +24,11 @@ watch( //to watch if any flash message was sent to one of the components with th
         else if (flash.error) {
             background.value = 'bg-red-500'
             toastText.value = flash.error
+            errorVisible.value = true
+        }
+        else if (flash.status) {
+            background.value = 'bg-yellow-500'
+            toastText.value = flash.status
             errorVisible.value = true
         }
         toastVisible.value = true

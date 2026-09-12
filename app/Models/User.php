@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Enums\UserStatus;
 use Database\Factories\UserFactory;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -46,10 +46,10 @@ use Illuminate\Support\Carbon;
  */
 #[Fillable(['name', 'email', 'password'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, \Illuminate\Auth\Passwords\CanResetPassword;
 
     /**
      * Get the attributes that should be cast.

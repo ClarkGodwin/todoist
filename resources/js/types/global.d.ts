@@ -16,6 +16,7 @@ declare module 'vite/client' {
 export interface FlashMessages {
     success?: string;
     error?: string;
+    status?: string;
 }
 
 declare module '@inertiajs/core' {

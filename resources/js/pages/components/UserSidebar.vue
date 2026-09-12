@@ -14,7 +14,7 @@ import SidebarMenu from '@/components/ui/sidebar/SidebarMenu.vue';
 import SidebarMenuItem from '@/components/ui/sidebar/SidebarMenuItem.vue';
 import SidebarMenuButton from '@/components/ui/sidebar/SidebarMenuButton.vue';
 
-import { Component, LayoutDashboard, ListTodo, Settings, UserRound } from '@lucide/vue';
+import { Component, LayoutDashboard, ListTodo, LogOutIcon, Settings, UserRound } from '@lucide/vue';
 import { User } from '@/types';
 import { reactive } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
@@ -69,7 +69,6 @@ const items = reactive([
                             <SidebarMenuItem>
                                 <SidebarMenuButton as-child class="active:text-frosted">
                                     <Link :href="route('home')" class="flex gap-3 text-frosted font-semibold">
-                                        <!-- the component tag will act like the icon in :is -->
                                         <UserRound class="size-(--text-sidebar-header-content)!" />
                                         <span class="text-sidebar-header-content">{{ auth.user.name }}</span>
                                     </Link>
@@ -107,6 +106,12 @@ const items = reactive([
             <Toast />
 
             <slot></slot>
+
+            <!-- This is the logout link -->
+            <Link :href="route('logout')" method="post" class="text-frosted text-logout underline hover:no-underline hover:cursor-pointer font-bold h-fit absolute top-0 right-0 flex items-center gap-logout-gap m-logout-m rounded-xl">
+                <LogOutIcon class="size-(--text-logout)" />
+                <div>Logout</div>
+            </Link>
         </SidebarProvider>
     </div>
 </template>
