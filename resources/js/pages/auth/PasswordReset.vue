@@ -10,14 +10,19 @@ import Form from '../components/Form.vue';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
-defineProps<{
+const props = defineProps<{
     errors? : Record<string, string>
+    email? : string
+    token?  : string
 }>()
+
+console.log(props.token)
+console.log(props.email)
 
 //list to go through to easily render the inputs using the Input component from the component folder
 const inputs = [
     {
-        id: 3,
+        id: 1,
         type: 'password',
         name: 'password',
         label: 'Password',
@@ -28,10 +33,20 @@ const inputs = [
         name: 'password_confirmation',
         label: 'Confirm',
     },
+    {
+        id: 3,
+        type: 'hidden',
+        name: 'token',
+    },
+    {
+        id: 4,
+        type: 'hidden',
+        name: 'email',
+    },
 ]
 
 </script>
 
 <template>
-    <Form title="Login to your account" :inputs="inputs" :errors="errors" action="password.reset"/>
+    <Form title="Change your password" :inputs="inputs" :errors="errors" action="password.update"/>
 </template>

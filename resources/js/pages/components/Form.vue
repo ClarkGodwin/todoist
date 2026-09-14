@@ -18,8 +18,8 @@ import { route } from 'ziggy-js';
 interface InputElement {
     id: number,
     type: string,
-    label: string,
     name: string,
+    label?: string,
 }
 
 defineProps<{

@@ -7,10 +7,10 @@ export default {
 <script setup lang="ts">
 import GuestNavbar from '../components/GuestNavbar.vue';
 import Form from '../components/Form.vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, usePage } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
-defineProps<{
+const props = defineProps<{
     errors? : Record<string, string>
 }>()
 
@@ -23,6 +23,8 @@ const inputs = [
         name: 'email',
     },
 ]
+
+console.log(usePage().flash.status)
 
 </script>
 

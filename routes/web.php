@@ -72,11 +72,14 @@ Route::post('/forgot-password', function (Request $request) {
 
         : back()->withErrors(['email' => __($status)]);
 
-})->name('password.email');
+})->middleware('guest')->name('password.email');
 
-Route::get('/reset-password/{token}', function (string $token) {
+Route::get('/reset-password/{token}', function (Request $request,  string $token) {
     // return view('auth.reset-password', ['token' => $token]);
-    return Inertia::render('auth/PasswordReset', ['token'=> $token]);
+    return Inertia::render('auth/PasswordReset', [
+        'token'=> $token,
+        'email'=> $request->email,
+    ]);
 })->middleware('guest')->name('password.reset');
 
 Route::post('/reset-password', function (Request $request) {
