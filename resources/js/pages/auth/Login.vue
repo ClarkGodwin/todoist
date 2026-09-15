@@ -28,6 +28,7 @@ const inputs = [
         type: 'password',
         name: 'password',
         label: 'Password',
+        value: '2'
     },
 ]
 

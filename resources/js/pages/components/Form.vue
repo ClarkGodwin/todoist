@@ -20,6 +20,7 @@ interface InputElement {
     type: string,
     name: string,
     label?: string,
+    value?: string,
 }
 
 defineProps<{
@@ -39,7 +40,7 @@ defineProps<{
         <!-- rendering the inputs -->
         <div v-for="input in inputs" :key="input.id" :class="{ hidden: input.type === 'hidden' }">
             <!-- composed of the label and input tag styled -->
-            <Input :type="input.type" :name="input.name" :label="input.label" :error="formErrors[input.name] || errors?.[input.name]" />
+            <Input :type="input.type" :name="input.name" :label="input.label" :value="input.value" :error="formErrors[input.name] || errors?.[input.name]" />
         </div>
 
         <!-- submission -->
