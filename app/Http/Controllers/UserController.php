@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\User\Login;
 use App\Http\Requests\User\Register; // it is in this class that the validation logic is implemented. Laravel calls it automatically since the type of the request variable is register
 use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -62,7 +65,7 @@ class UserController extends Controller
 
     }
 
-    public function handEmailVerificationLink(EmailVerificationRequest $request)
+    public function verifyTheEmail(EmailVerificationRequest $request)
     {
         $request->fulfill();
 
@@ -89,5 +92,57 @@ class UserController extends Controller
             'email' => __($status),
         ]);
 
+    }
+
+    public function renderPasswordResetForm(Request $request, string $token)
+    {
+        return Inertia::render('auth/PasswordReset', [
+            'token' => $token,
+            'email' => $request->email,
+        ]);
+    }
+
+    public function resetThePassword(Request $request)
+    {
+
+        $request->validate([
+
+            'token' => 'required',
+
+            'email' => 'required|email',
+
+            'password' => 'required|min:1|confirmed',
+
+        ]);
+
+        $status = Password::reset(
+
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+
+            function (User $user, string $password) {
+
+                $user->forceFill([
+
+                    'password' => Hash::make($password),
+
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
+
+            }
+
+        );
+
+        if ($status === Password::PasswordReset) {
+            Inertia::flash('status', __($status));
+
+            return redirect()->route('login');
+        }
+
+        return back()->withErrors([
+            'email' => [__($status)],
+        ]);
     }
 }

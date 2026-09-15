@@ -1,15 +1,14 @@
 <?php
 
+/**
+ * 1. Register routes
+ * 2. Login routes
+ * 3. Password Reset Routes
+ */
+
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
-use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
-use Inertia\Inertia;
 
 Route::middleware(['guest'])->group(function () {
     Route::inertia('/', 'Welcome')->name('home');
@@ -24,62 +23,18 @@ Route::middleware(['guest'])->group(function () {
 
     Route::inertia('password_forgotten', 'auth/PasswordForgotten')->name('password.forgotten');
     Route::post('/forgot-password', [UserController::class, 'sendEmailToResetThePassword'])->name('password.email');
-
-    Route::get('/reset-password/{token}', function (Request $request, string $token) {
-        // return view('auth.reset-password', ['token' => $token]);
-        return Inertia::render('auth/PasswordReset', [
-            'token' => $token,
-            'email' => $request->email,
-        ]);
-    })->middleware('guest')->name('password.reset');
-
-    Route::post('/reset-password', function (Request $request) {
-
-        $request->validate([
-
-            'token' => 'required',
-
-            'email' => 'required|email',
-
-            'password' => 'required|min:1|confirmed',
-
-        ]);
-
-        $status = Password::reset(
-
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-
-            function (User $user, string $password) {
-
-                $user->forceFill([
-
-                    'password' => Hash::make($password),
-
-                ])->setRememberToken(Str::random(60));
-
-                $user->save();
-
-                event(new PasswordReset($user));
-
-            }
-
-        );
-
-        return $status === Password::PasswordReset
-
-            ? redirect()->route('login')->with('status', __($status))
-
-            : back()->withErrors(['email' => [__($status)]]);
-
-    })->middleware('guest')->name('password.update');
+    Route::get('/reset-password/{token}', [UserController::class, 'renderPasswordResetForm'])->name('password.reset');
+    Route::post('/reset-password', [UserController::class, 'resetThePassword'])->name('password.update');
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::withoutMiddleware(['verified'])->group(function () {
+        //email verification link routes
         Route::inertia('email/verify', 'auth/EmailVerify')->name('verification.notice');
         Route::post('/email/verification-notification', [UserController::class, 'sendEmailVerificationLink'])->middleware(['throttle:6,1'])->name('verification.send');
-        Route::get('/email/verify/{id}/{hash}', [UserController::class, 'handEmailVerificationLink'])->middleware(['signed'])->name('verification.verify');
+        Route::get('/email/verify/{id}/{hash}', [UserController::class, 'verifyTheEmail'])->middleware(['signed'])->name('verification.verify');
 
+        //logout
         Route::post('logout', [UserController::class, 'logout'])->name('logout');
     });
 
