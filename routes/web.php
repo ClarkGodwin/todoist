@@ -4,6 +4,7 @@
  * 1. Register routes
  * 2. Login routes
  * 3. Password Reset Routes
+ * 4. Email verification routes
  */
 
 use App\Http\Controllers\TaskController;
@@ -13,14 +14,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['guest'])->group(function () {
     Route::inertia('/', 'Welcome')->name('home');
 
-    // register routes
+    // ===============================1. Register routes=======================================
     Route::inertia('register', 'auth/Register')->name('register');
     Route::post('register', [UserController::class, 'create'])->name('register');
 
-    // login  routes
+    // ===============================2. Login routes=======================================
     Route::inertia('login', 'auth/Login')->name('login');
     Route::post('login', [UserController::class, 'login'])->name('login');
 
+    // =========================3. Password reset routes==================================
     Route::inertia('password_forgotten', 'auth/PasswordForgotten')->name('password.forgotten');
     Route::post('/forgot-password', [UserController::class, 'sendEmailToResetThePassword'])->name('password.email');
     Route::get('/reset-password/{token}', [UserController::class, 'renderPasswordResetForm'])->name('password.reset');
@@ -29,14 +31,15 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::withoutMiddleware(['verified'])->group(function () {
-        //email verification link routes
+        // ====================4. Email verification routes=============================
         Route::inertia('email/verify', 'auth/EmailVerify')->name('verification.notice');
         Route::post('/email/verification-notification', [UserController::class, 'sendEmailVerificationLink'])->middleware(['throttle:6,1'])->name('verification.send');
         Route::get('/email/verify/{id}/{hash}', [UserController::class, 'verifyTheEmail'])->middleware(['signed'])->name('verification.verify');
 
-        //logout
+        // logout
         Route::post('logout', [UserController::class, 'logout'])->name('logout');
     });
+
 
     Route::middleware(['verified'])->group(function () {
         Route::inertia('dashboard', 'user/Dashboard')->name('dashboard');

@@ -1,9 +1,16 @@
 <?php
+/**
+ * 1. Simple user manipulation: create, update, login, logout
+ * 2. Email verification link functioon
+ * 3. Password reset functions
+ */
 
 namespace App\Http\Controllers;
 
+// it is in this class that the validation for the $request with each of these 2 types is implemented. Laravel calls it automatically since the type of the request variable is Login or Register
 use App\Http\Requests\User\Login;
-use App\Http\Requests\User\Register; // it is in this class that the validation logic is implemented. Laravel calls it automatically since the type of the request variable is register
+use App\Http\Requests\User\Register;
+
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
@@ -17,6 +24,7 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
+    //========================1. Simple user manipulation=====================
     public function create(Register $request)
     {
         // put the newly created User in the $user variable
@@ -55,6 +63,13 @@ class UserController extends Controller
         return redirect()->intended(route('home'));
     }
 
+
+
+
+
+
+    //========================2. Email verification link=====================
+
     public function sendEmailVerificationLink(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
@@ -71,6 +86,14 @@ class UserController extends Controller
 
         return redirect()->intended(route('dashboard'));
     }
+
+
+
+
+
+
+
+    //========================3. Password  Reset=====================
 
     public function sendEmailToResetThePassword(Request $request)
     {
