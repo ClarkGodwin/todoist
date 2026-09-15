@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
@@ -47,5 +49,27 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->intended(route('home'));
+    }
+
+    public function sendEmailToResetThePassword(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink(
+
+            $request->only('email')
+
+        );
+
+        if ($status === Password::ResetLinkSent) {
+            Inertia::flash('status', __($status));
+
+            return back();
+        }
+
+        return back()->withErrors([
+            'email' => __($status),
+        ]);
+
     }
 }

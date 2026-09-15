@@ -15,44 +15,24 @@ use Inertia\Inertia;
 Route::middleware(['guest'])->group(function () {
     Route::inertia('/', 'Welcome')->name('home');
 
+    // register routes
+    Route::inertia('register', 'auth/Register')->name('register');
+    Route::post('register', [UserController::class, 'create'])->name('register');
+
     // login  routes
     Route::inertia('login', 'auth/Login')->name('login');
     Route::post('login', [UserController::class, 'login'])->name('login');
 
-    // register route
-    Route::inertia('register', 'auth/Register')->name('register');
-    Route::post('register', [UserController::class, 'create'])->name('register');
-
     Route::inertia('password_forgotten', 'auth/PasswordForgotten')->name('password.forgotten');
-
-    Route::post('/forgot-password', function (Request $request) {
-
-        $request->validate(['email' => 'required|email']);
-
-        $status = Password::sendResetLink(
-
-            $request->only('email')
-
-        );
-
-        if ($status === Password::ResetLinkSent) {
-            Inertia::flash('status', __($status));
-
-            return back();
-        }
-
-        return back()->withErrors([
-            'email' => __($status),
-        ]);
-
-    })->name('password.email');
+    Route::post('/forgot-password', [UserController::class, 'sendEmailToResetThePassword'])->name('password.email');
 
     Route::get('/reset-password/{token}', function (Request $request, string $token) {
+        // return view('auth.reset-password', ['token' => $token]);
         return Inertia::render('auth/PasswordReset', [
             'token' => $token,
             'email' => $request->email,
         ]);
-    })->name('password.reset');
+    })->middleware('guest')->name('password.reset');
 
     Route::post('/reset-password', function (Request $request) {
 
@@ -86,28 +66,44 @@ Route::middleware(['guest'])->group(function () {
 
         );
 
-        Inertia::flash('status', __($status));
+        return $status === Password::PasswordReset
 
-        return redirect()->route('login');
+            ? redirect()->route('login')->with('status', __($status))
 
-    })->name('password.update');
+            : back()->withErrors(['email' => [__($status)]]);
 
+    })->middleware('guest')->name('password.update');
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::inertia('dashboard', 'user/Dashboard')->name('dashboard');
-    Route::inertia('tasks', 'user/Tasks')->name('tasks');
-    Route::inertia('dashboard/email/verify', 'auth/EmailVerify')->name('verification.notice');
-    Route::post('logout', [UserController::class, 'logout'])->name('logout');
+    Route::withoutMiddleware(['verified'])->group(function () {
+        Route::inertia('email/verify', 'auth/EmailVerify')->name('verification.notice');
+        Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
 
-    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+            $request->fulfill();
 
-        $request->fulfill();
+            return redirect()->intended(route('dashboard'));
 
-        return redirect()->intended(route('dashboard'));
+        })->middleware(['signed'])->name('verification.verify');
 
-    })->middleware(['auth', 'signed'])->name('verification.verify');
+        Route::post('/email/verification-notification', function (Request $request) {
 
+            $request->user()->sendEmailVerificationNotification();
+
+            Inertia::flash('success', 'Verification link sent!');
+
+            return back();
+
+        })->middleware(['throttle:6,1'])->name('verification.send');
+        Route::post('logout', [UserController::class, 'logout'])->name('logout');
+
+    });
+
+    Route::middleware(['verified'])->group(function () {
+        Route::inertia('dashboard', 'user/Dashboard')->name('dashboard');
+        Route::inertia('tasks', 'user/Tasks')->name('tasks');
+        Route::get('/user/{id}/tasks', [TaskController::class, 'index'])->name('user.tasks');
+
+    });
 });
 
-Route::get('/user/{id}/tasks', [TaskController::class, 'index'])->name('user.tasks');
