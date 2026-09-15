@@ -6,7 +6,6 @@ import Sidebar from '@/components/ui/sidebar/Sidebar.vue';
 import SidebarHeader from '@/components/ui/sidebar/SidebarHeader.vue';
 import SidebarContent from '@/components/ui/sidebar/SidebarContent.vue';
 import SidebarGroup from '@/components/ui/sidebar/SidebarGroup.vue';
-import SidebarInset from '@/components/ui/sidebar/SidebarInset.vue';
 import SidebarTrigger from '@/components/ui/sidebar/SidebarTrigger.vue';
 import SidebarGroupLabel from '@/components/ui/sidebar/SidebarGroupLabel.vue';
 import SidebarGroupContent from '@/components/ui/sidebar/SidebarGroupContent.vue';
@@ -17,7 +16,7 @@ import SidebarMenuButton from '@/components/ui/sidebar/SidebarMenuButton.vue';
 import { Component, LayoutDashboard, ListTodo, LogOutIcon, Settings, UserRound } from '@lucide/vue';
 import { User } from '@/types';
 import { reactive } from 'vue';
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link, } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 
 import Toast from './Toast.vue';

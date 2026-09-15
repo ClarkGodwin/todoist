@@ -7,8 +7,7 @@ export default {
 <script setup lang="ts">
 import GuestNavbar from '../components/GuestNavbar.vue';
 import Form from '../components/Form.vue';
-import { Link, usePage } from '@inertiajs/vue3';
-import { route } from 'ziggy-js';
+import {usePage } from '@inertiajs/vue3';
 
 const props = defineProps<{
     errors? : Record<string, string>

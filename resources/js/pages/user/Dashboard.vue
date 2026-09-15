@@ -10,9 +10,6 @@ export default {
 <script setup lang="ts">
 import DashboardInfo from '../components/DashboardInfo.vue';
 import UserSidebar from '../components/UserSidebar.vue';
-
-import { Link, usePage } from '@inertiajs/vue3';
-import { route } from 'ziggy-js';
 </script>
 
 <template>

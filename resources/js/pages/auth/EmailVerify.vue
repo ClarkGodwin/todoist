@@ -8,7 +8,7 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 import UserSidebar from '../components/UserSidebar.vue';
 import DashboardInfo from '../components/DashboardInfo.vue';
