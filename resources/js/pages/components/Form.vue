@@ -37,7 +37,7 @@ defineProps<{
         <h2 class="text-frosted font-bold text-center text-form-h2">{{ title }}</h2>
 
         <!-- rendering the inputs -->
-        <div v-for="input in inputs" :key="input.id">
+        <div v-for="input in inputs" :key="input.id" :class="{ hidden: input.type === 'hidden' }">
             <!-- composed of the label and input tag styled -->
             <Input :type="input.type" :name="input.name" :label="input.label" :error="formErrors[input.name] || errors?.[input.name]" />
         </div>
