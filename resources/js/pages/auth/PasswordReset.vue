@@ -7,17 +7,12 @@ export default {
 <script setup lang="ts">
 import GuestNavbar from '../components/GuestNavbar.vue';
 import Form from '../components/Form.vue';
-import { Link } from '@inertiajs/vue3';
-import { route } from 'ziggy-js';
 
 const props = defineProps<{
     errors? : Record<string, string>
     email? : string
     token?  : string
 }>()
-
-console.log(props.token)
-console.log(props.email)
 
 //list to go through to easily render the inputs using the Input component from the component folder
 const inputs = [
@@ -37,11 +32,13 @@ const inputs = [
         id: 3,
         type: 'hidden',
         name: 'token',
+        value: props.token,
     },
     {
         id: 4,
         type: 'hidden',
         name: 'email',
+        value: props.email,
     },
 ]
 
