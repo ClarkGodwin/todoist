@@ -6,6 +6,7 @@ use App\Http\Requests\User\Login;
 use App\Http\Requests\User\Register; // it is in this class that the validation logic is implemented. Laravel calls it automatically since the type of the request variable is register
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
@@ -49,6 +50,23 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->intended(route('home'));
+    }
+
+    public function sendEmailVerificationLink(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+
+        Inertia::flash('success', 'Verification link sent!');
+
+        return back();
+
+    }
+
+    public function handEmailVerificationLink(EmailVerificationRequest $request)
+    {
+        $request->fulfill();
+
+        return redirect()->intended(route('dashboard'));
     }
 
     public function sendEmailToResetThePassword(Request $request)

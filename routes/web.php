@@ -4,7 +4,6 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -78,25 +77,10 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::withoutMiddleware(['verified'])->group(function () {
         Route::inertia('email/verify', 'auth/EmailVerify')->name('verification.notice');
-        Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        Route::post('/email/verification-notification', [UserController::class, 'sendEmailVerificationLink'])->middleware(['throttle:6,1'])->name('verification.send');
+        Route::get('/email/verify/{id}/{hash}', [UserController::class, 'handEmailVerificationLink'])->middleware(['signed'])->name('verification.verify');
 
-            $request->fulfill();
-
-            return redirect()->intended(route('dashboard'));
-
-        })->middleware(['signed'])->name('verification.verify');
-
-        Route::post('/email/verification-notification', function (Request $request) {
-
-            $request->user()->sendEmailVerificationNotification();
-
-            Inertia::flash('success', 'Verification link sent!');
-
-            return back();
-
-        })->middleware(['throttle:6,1'])->name('verification.send');
         Route::post('logout', [UserController::class, 'logout'])->name('logout');
-
     });
 
     Route::middleware(['verified'])->group(function () {
@@ -106,4 +90,3 @@ Route::middleware(['auth'])->group(function () {
 
     });
 });
-
