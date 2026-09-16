@@ -23,7 +23,8 @@ class ModifyAccountInfo extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:100|min:5',
+            "email"=> "required|email|unique:users",
         ];
     }
 }
