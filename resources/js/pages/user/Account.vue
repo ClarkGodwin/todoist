@@ -1,0 +1,60 @@
+<script lang="ts">
+export default {
+    layout: {
+        sidebar: [UserSidebar, { active: 'account' }],
+        content: [DashboardInfo, { title: "Account's informations" }],
+    }
+}
+</script>
+
+<script setup lang="ts">
+import { User } from '@/types/auth.js';
+import DashboardInfo from '../components/DashboardInfo.vue';
+import UserSidebar from '../components/UserSidebar.vue';
+
+//to catch the errors sent by the request controller and pass them down to the custom Form component
+const props = defineProps<{
+    //to get the authenticated user
+    auth: {
+        user: User
+    }
+    errors? : Record<string, string>
+}>()
+
+const user = props.auth.user
+
+const infos = [
+    {
+        id: 1,
+        title: 'Username',
+        value: user.name,
+    },
+    {
+        id: 2,
+        title: 'E-mail',
+        value:  user.email,
+    },
+    {
+        id: 3,
+        title: 'Created at',
+        value:  user.created_at.slice(0, 10),
+    },
+    {
+        id: 4,
+        title: 'Updated at',
+        value:  user.updated_at.slice(0, 10),
+    },
+]
+
+</script>
+
+<template>
+    <div
+    v-for="info in infos"
+    :key="info.id"
+    class="flex items-center gap-account-gap my-account-my"
+    >
+        <div class="font-bold text-frosted text-account-title">{{ info.title }} : </div>
+        <div class="text-dark-surface-400 text-account-value">{{ info.value }}</div>
+    </div>
+</template>
