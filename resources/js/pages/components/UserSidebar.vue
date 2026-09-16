@@ -13,7 +13,7 @@ import SidebarMenu from '@/components/ui/sidebar/SidebarMenu.vue';
 import SidebarMenuItem from '@/components/ui/sidebar/SidebarMenuItem.vue';
 import SidebarMenuButton from '@/components/ui/sidebar/SidebarMenuButton.vue';
 
-import { Component, LayoutDashboard, ListTodo, LogOutIcon, Settings, UserRound } from '@lucide/vue';
+import { Component, LayoutDashboard, ListTodo, LogOutIcon, UserRoundCog, UserRound } from '@lucide/vue';
 import { User } from '@/types';
 import { reactive } from 'vue';
 import { Link, } from '@inertiajs/vue3';
@@ -45,15 +45,13 @@ const items = reactive([
         'title': 'Tasks',
         'url': 'tasks',
         'icon': ListTodo,
-        'active': false,
     },
-    // {page.url
-    //     'id' : 3,
-    //     'title' : 'Settings',
-    //     'url' : '#',
-    //     'icon' : Settings,
-    //     'active' : false,
-    // },
+    {
+        'id' : 3,
+        'title' : 'Account',
+        'url' : 'home',
+        'icon' : UserRoundCog,
+    },
 ])
 
 </script>
@@ -88,7 +86,8 @@ const items = reactive([
                                     <SidebarMenuButton as-child class="mb-2">
                                         <!-- item.url == active , is used to see which one of the links is active to apply a special style to it -->
                                         <Link :href="route(item.url)"
-                                            :class="{ 'bg-frosted text-white font-semibold active:bg-surface-300 active:text-frosted': item.url == active, 'hover:bg-surface-300 hover:text-frosted': item.url != active }">
+                                            :class="[item.title.toLowerCase() == active ? 'bg-frosted text-white font-semibold active:bg-surface-300 active:text-frosted' : 'hover:bg-surface-300 hover:text-frosted']"
+                                            >
                                             <component :is="item.icon" class="size-(--text-sidebar-body-content)!" />
                                             <span class="text-sidebar-body-content">{{ item.title }}</span>
                                         </Link>
@@ -99,7 +98,7 @@ const items = reactive([
                     </SidebarGroup>
                 </SidebarContent>
             </Sidebar>
-            <SidebarTrigger />
+            <SidebarTrigger class="size-sidebarTrigger m-sidebarTrigger-m" />
 
             <!-- this toast is uses to displays toast messages when one of the components using it as a layout has a flash message sent to it -->
             <Toast />
