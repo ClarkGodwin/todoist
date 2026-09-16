@@ -49,7 +49,7 @@ const items = reactive([
     {
         'id' : 3,
         'title' : 'Account',
-        'url' : 'home',
+        'url' : 'account',
         'icon' : UserRoundCog,
     },
 ])

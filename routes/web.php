@@ -43,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {
         Route::inertia('dashboard', 'user/Dashboard')->name('dashboard');
         Route::inertia('tasks', 'user/Tasks')->name('tasks');
+        Route::inertia('account', 'user/Account')->name('account');
         Route::get('/user/{id}/tasks', [TaskController::class, 'index'])->name('user.tasks');
 
     });
