@@ -64,7 +64,7 @@ const items = reactive([
                     <SidebarMenu>
                         <SidebarMenu>
                             <SidebarMenuItem>
-                                <SidebarMenuButton as-child class="active:text-frosted">
+                                <SidebarMenuButton as-child class="border-none">
                                     <Link :href="route('home')" class="flex gap-3 text-frosted font-semibold">
                                         <UserRound class="size-(--text-sidebar-header-content)!" />
                                         <span class="text-sidebar-header-content">{{ auth.user.name }}</span>
