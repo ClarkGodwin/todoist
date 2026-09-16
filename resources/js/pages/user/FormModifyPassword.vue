@@ -9,8 +9,6 @@ export default {
 <script setup lang="ts">
 import UserSidebar from '../components/UserSidebar.vue';
 import Form from '../components/Form.vue';
-import { Link } from '@inertiajs/vue3';
-import { route } from 'ziggy-js';
 import { User } from '@/types/auth.js';
 
 //to catch the errors sent by the request controller and pass them down to the custom Form component
@@ -28,24 +26,28 @@ const user = props.auth.user
 const inputs = [
     {
         id: 1,
-        type: 'text',
-        name: 'name',
-        label: 'Username',
-        value: user.name
+        type: 'password',
+        name: 'old_password',
+        label: 'Old',
     },
     {
         id: 2,
-        type: 'email',
-        name: 'email',
-        label: 'E-mail',
-        value: user.email
+        type: 'password',
+        name: 'password',
+        label: 'New',
+    },
+    {
+        id: 3,
+        type: 'password',
+        name: 'password_confirmation',
+        label: 'Confirm',
     },
 ]
 
 </script>
 
 <template>
-    <Form action="login" title="Account's informations" :inputs="inputs" :errors="errors" submitMessage="Modify">
+    <Form action="login" title="Modify your password" :inputs="inputs" :errors="errors" submitMessage="Modify">
         <div class="text-red-400">
             Unless you click on 'Modify', whatever you've changed  won't be saved
         </div>

@@ -59,12 +59,12 @@ const infos = [
     <div class="text-account text-dark-surface-400 my-account-modify-my flex flex-col gap-3">
         <div>
             <span>To modify your personal informations, </span>
-            <Link :href="route('home')" class="text-frosted underline hover:no-underline">click here</Link>
+            <Link :href="route('modify.account-info')" class="text-frosted underline hover:no-underline">click here</Link>
         </div>
 
         <div>
             <span>To modify your password, </span>
-            <Link :href="route('home')" class="text-frosted underline hover:no-underline">click here</Link>
+            <Link :href="route('modify.password')" class="text-frosted underline hover:no-underline">click here</Link>
         </div>
     </div>
 
