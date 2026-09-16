@@ -26,6 +26,7 @@ interface InputElement {
 defineProps<{
     title : string
     action : string
+    submitMessage? : string
     inputs : InputElement[]
     errors? : Record<string, string>
 }>()
@@ -33,7 +34,7 @@ defineProps<{
 </script>
 
 <template>
-    <Form :action="route(action)" method="post" #default="{errors: formErrors}" class="bg-surface-300 rounded-2xl p-form-p mt-form-mt w-form mx-auto flex flex-col gap-7.5 text-form-content">
+    <Form :action="route(action)" method="post" #default="{errors: formErrors}" class="bg-surface-300 h-fit rounded-2xl p-form-p mt-form-mt w-form mx-auto flex flex-col gap-7.5 text-form-content">
         <!-- page title -->
         <h2 class="text-frosted font-bold text-center text-form-h2">{{ title }}</h2>
 
@@ -44,7 +45,7 @@ defineProps<{
         </div>
 
         <!-- submission -->
-        <button class="bg-frosted text-white font-bold rounded-xl p-form-button-p hover:cursor-pointer">Submit</button>
+        <button class="bg-frosted text-white font-bold rounded-xl p-form-button-p hover:cursor-pointer">{{ submitMessage ? submitMessage : 'Submit' }}</button>
 
         <!-- If there are any other information to display under the submission button like for the register and login page -->
         <div>
