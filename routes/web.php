@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
         Route::inertia('dashboard', 'user/Dashboard')->name('dashboard');
         Route::inertia('account', 'user/Account')->name('account');
 
+        // ====================5. Account modification routes=============================
         Route::inertia('modify/account-info', 'user/FormModifyAccountInfo')->name('modify.account-info');
         Route::put('modify/account-info', [UserController::class, 'updateUserInfo'])->name('modify.account-info');
 
@@ -52,8 +53,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::delete('delete', [UserController::class,'deleteUser'])->name('delete.user');
 
-        Route::inertia('tasks', 'user/Tasks')->name('tasks');
-        Route::get('/user/{id}/tasks', [TaskController::class, 'index'])->name('user.tasks');
+
+
+        Route::get('tasks', [TaskController::class, 'view'])->name('tasks');
+
 
     });
 });

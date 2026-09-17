@@ -13,12 +13,12 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(string $id)
+    public function view()
     {
-        // $task = Task::find($id);
-        // $user = $task->user;
-        $user = User::find($id);
-        return Inertia::render('user/Tasks', compact('user'));
+        $tasks = Task::where("user_id", auth()->user()->id)
+        ->select(['id', 'title', 'description', 'status', 'day'])->get();
+
+        return Inertia::render('user/Tasks', compact('tasks'));
     }
 
     /**

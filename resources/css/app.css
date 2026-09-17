@@ -2,7 +2,6 @@
 /*---break---*/
 
 @import 'tailwindcss';
-@import "tw-animate-css";
 /* @import "tw-animate-css"; */
 /*---break---*/
 @custom-variant dark (&:is(.dark *));
@@ -107,6 +106,10 @@
     --spacing-account-modify-my: clamp(1.563rem,1.285rem + 1.389vw,2.5rem);
     --text-account-title: clamp(0.813rem, 0.72rem + 0.463vw, 1.125rem);
     --text-account: clamp(0.688rem, 0.595rem + 0.463vw, 1rem);
+
+    /*for the Tasks component*/
+    --text-tasks-noTasks: clamp(0.75rem,0.676rem + 0.37vw,1rem);
+    --spacing-tasks-p : clamp(0.375rem,0.338rem + 0.185vw,0.5rem);
 
     /* Dark Mode Text (White to Gray Gradients) */
     --color-dark-text-main: #f8fafc;

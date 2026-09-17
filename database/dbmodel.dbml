@@ -13,7 +13,6 @@ Table Users {
 
 Enum task_statuses {
     to_do
-    being_done
     done
 
 }
@@ -22,7 +21,7 @@ Table Tasks {
     id int [primary key, increment]
     user_id int [ref: >Users.id]
     title varchar(15) [not null]
-    description text [not null]
+    description text [null]
     day datetime [not null]
     status task_statuses [default: task_statuses.to_do]
     created_at datetime
