@@ -18,7 +18,7 @@ class TaskController extends Controller
         $tasks = Task::where("user_id", auth()->user()->id)
         ->select(['id', 'title', 'description', 'status', 'day'])->get();
 
-        return Inertia::render('user/Tasks', compact('tasks'));
+        return Inertia::render('tasks/Tasks', compact('tasks'));
     }
 
     /**
