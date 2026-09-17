@@ -13,6 +13,7 @@ use App\Http\Requests\User\Login;
 use App\Http\Requests\User\ModifyAccountInfo;
 use App\Http\Requests\User\ModifyPassword;
 use App\Http\Requests\User\Register;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
@@ -106,6 +107,17 @@ class UserController extends Controller
                 'old_password'=> 'The old password is incorrect'
             ]);
         }
+    }
+
+    public function deleteUser(Request $request){
+        $tasks = Task::where('user_id', Auth::user()->id)->get();
+        Task::destroy($tasks);
+
+        User::destroy(Auth::user()->id);
+
+        Inertia::flash('success','Your account has been successfully deleted');
+
+        return redirect()->intended(route('home'));
     }
 
     // ========================2. Email verification link=====================

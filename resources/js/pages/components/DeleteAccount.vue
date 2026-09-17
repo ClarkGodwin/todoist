@@ -12,6 +12,8 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
+import { Link } from '@inertiajs/vue3';
+import { route } from 'ziggy-js';
 
 </script>
 
@@ -32,12 +34,14 @@ import {
                     and remove your data from our servers.
                 </AlertDialogDescription>
             </AlertDialogHeader>
-            <AlertDialogFooter class="text-white font-bold">
-                <AlertDialogCancel class="bg-frosted" >
+            <AlertDialogFooter class="text-white font-bold *:hover:cursor-pointer">
+                <AlertDialogCancel class="bg-frosted">
                     Cancel
                 </AlertDialogCancel>
                 <AlertDialogAction class="bg-red-500">
-                    Continue
+                    <Link :href="route('delete.user')" method="delete">
+                        Continue
+                    </Link>
                 </AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>
