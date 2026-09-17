@@ -17,7 +17,7 @@ import DashboardInfo from '../components/DashboardInfo.vue';
 
 <template>
     <p class=''>
-        If you have just registered, a verification link has been sent to your email address. <br>
+        If you have just registered or changed your email, a verification link has been sent to your email address. <br>
         Check your email (or junk) to verify it . <br>
         If you don't see it, you can just
         <Link :href="route('verification.send')" method="post" class="text-frosted underline hover:no-underline hover:cursor-pointer">click here </Link>

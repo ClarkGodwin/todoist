@@ -45,7 +45,8 @@ const inputs = [
 <template>
     <Form action="login" title="Modify your account's informations" :inputs="inputs" :errors="errors" submitMessage="Modify">
         <div class="text-red-400">
-            Unless you click on 'Modify', whatever you've changed  won't be saved
+            Unless you click on 'Modify', whatever you've changed  won't be saved <br>
+            Be aware that if you change the e-mail, you'll have to confirm it again
         </div>
     </Form>
 </template>

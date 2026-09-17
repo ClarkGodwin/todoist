@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 1. Simple user manipulation: create, update, login, logout
  * 2. Email verification link functioon
@@ -9,8 +10,8 @@ namespace App\Http\Controllers;
 
 // it is in this class that the validation for the $request with each of these 2 types is implemented. Laravel calls it automatically since the type of the request variable is Login or Register
 use App\Http\Requests\User\Login;
+use App\Http\Requests\User\ModifyAccountInfo;
 use App\Http\Requests\User\Register;
-
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Auth\Events\Registered;
@@ -24,7 +25,7 @@ use Inertia\Inertia;
 
 class UserController extends Controller
 {
-    //========================1. Simple user manipulation=====================
+    // ========================1. Simple user manipulation=====================
     public function create(Register $request)
     {
         // put the newly created User in the $user variable
@@ -63,12 +64,34 @@ class UserController extends Controller
         return redirect()->intended(route('home'));
     }
 
+    public function updateUserInfo(ModifyAccountInfo $request)
+    {
+        $user = Auth::user();
 
+        // to check if the user has changed his email so that a new email verification link will be sent to him so that we can be sure that the email is really his
+        if ($user->email != $request->input('email')) {
+            $user->updated($request->validated());
 
+            // since the previous email has to have been registered to reach this point, the email_verified_at column has to be put at null so that the user has no access to the middelware('verified') routes unless he verifies his new email
+            $user->email_verified_at = null;
 
+            $user->save();
 
+            //this event is triggered so that a  email verification link is sent to the user
+            event(new Registered($user));
 
-    //========================2. Email verification link=====================
+            return redirect()->intended(route('verification.notice'));
+
+        } else {
+            $user->updated($request->validated());
+            $user->save();
+            Inertia::flash('success', 'Your modifications have been registered');
+
+            return redirect()->intended(route('account'));
+        }
+    }
+
+    // ========================2. Email verification link=====================
 
     public function sendEmailVerificationLink(Request $request)
     {
@@ -87,13 +110,7 @@ class UserController extends Controller
         return redirect()->intended(route('dashboard'));
     }
 
-
-
-
-
-
-
-    //========================3. Password  Reset=====================
+    // ========================3. Password  Reset=====================
 
     public function sendEmailToResetThePassword(Request $request)
     {

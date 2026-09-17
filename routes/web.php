@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
         Route::inertia('account', 'user/Account')->name('account');
 
         Route::inertia('modify/account-info', 'user/FormModifyAccountInfo')->name('modify.account-info');
+        Route::put('modify/account-info', 'user/FormModifyAccountInfo')->name('modify.account-info');
+
         Route::inertia('modify/password', 'user/FormModifyPassword')->name('modify.password');
         Route::inertia('tasks', 'user/Tasks')->name('tasks');
         Route::get('/user/{id}/tasks', [TaskController::class, 'index'])->name('user.tasks');
