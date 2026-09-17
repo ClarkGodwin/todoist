@@ -70,7 +70,7 @@ class UserController extends Controller
 
         // to check if the user has changed his email so that a new email verification link will be sent to him so that we can be sure that the email is really his
         if ($user->email != $request->input('email')) {
-            $user->updated($request->validated());
+            $user->update($request->validated());
 
             // since the previous email has to have been registered to reach this point, the email_verified_at column has to be put at null so that the user has no access to the middelware('verified') routes unless he verifies his new email
             $user->email_verified_at = null;
@@ -83,7 +83,7 @@ class UserController extends Controller
             return redirect()->intended(route('verification.notice'));
 
         } else {
-            $user->updated($request->validated());
+            $user->update($request->validated());
             $user->save();
             Inertia::flash('success', 'Your modifications have been registered');
 

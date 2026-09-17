@@ -4,6 +4,8 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class ModifyAccountInfo extends FormRequest
 {
@@ -22,9 +24,10 @@ class ModifyAccountInfo extends FormRequest
      */
     public function rules(): array
     {
+        $user = Auth::user();
         return [
             'name' => 'required|string|max:100|min:5',
-            "email"=> "required|email|unique:users",
+            "email"=> ["required","email", Rule::unique("users")->ignore($user)],
         ];
     }
 }

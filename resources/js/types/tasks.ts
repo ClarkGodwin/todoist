@@ -1,6 +1,5 @@
 export type Task = {
     id: number;
-    // user_id: number;
     title: string;
     description: string;
     day : string;
@@ -10,6 +9,3 @@ export type Task = {
     [key: string]: unknown;
 };
 
-// export type Task = {
-//     user: User;
-// };
