@@ -47,7 +47,7 @@ const inputs = [
 </script>
 
 <template>
-    <Form action="login" title="Modify your password" :inputs="inputs" :errors="errors" submitMessage="Modify">
+    <Form action="modify.password" method="put" title="Modify your password" :inputs="inputs" :errors="errors" submitMessage="Modify">
         <div class="text-red-400">
             Unless you click on 'Modify', whatever you've changed  won't be saved
         </div>

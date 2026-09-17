@@ -48,6 +48,8 @@ Route::middleware(['auth'])->group(function () {
         Route::put('modify/account-info', [UserController::class, 'updateUserInfo'])->name('modify.account-info');
 
         Route::inertia('modify/password', 'user/FormModifyPassword')->name('modify.password');
+        Route::put('modify/password', [UserController::class, 'updatePassword'])->name('modify.password');
+
         Route::inertia('tasks', 'user/Tasks')->name('tasks');
         Route::get('/user/{id}/tasks', [TaskController::class, 'index'])->name('user.tasks');
 

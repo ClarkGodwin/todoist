@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 // it is in this class that the validation for the $request with each of these 2 types is implemented. Laravel calls it automatically since the type of the request variable is Login or Register
 use App\Http\Requests\User\Login;
 use App\Http\Requests\User\ModifyAccountInfo;
+use App\Http\Requests\User\ModifyPassword;
 use App\Http\Requests\User\Register;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
@@ -88,6 +89,22 @@ class UserController extends Controller
             Inertia::flash('success', 'Your modifications have been registered');
 
             return redirect()->intended(route('account'));
+        }
+    }
+
+    public function updatePassword(ModifyPassword $request){
+        $user = Auth::user();
+
+        if(Hash::check($request->input('old_password'), $user->password)){
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+            Inertia::flash('success','The password has been updated');
+            return redirect()->intended(route('account'));
+        }
+        else{
+            return back()->withErrors([
+                'old_password'=> 'The old password is incorrect'
+            ]);
         }
     }
 

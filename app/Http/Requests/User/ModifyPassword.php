@@ -12,7 +12,7 @@ class ModifyPassword extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,8 @@ class ModifyPassword extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'old_password'=> 'required|string',
+            'password'=> 'required|string|confirmed',
         ];
     }
 }
