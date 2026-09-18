@@ -5,6 +5,8 @@
  * 2. Register routes
  * 3. Password Reset Routes
  * 4. Email verification routes
+ * 5. Account modification routes
+ * 6. Tasks routes
  */
 
 use App\Http\Controllers\TaskController;
@@ -55,7 +57,9 @@ Route::middleware(['auth'])->group(function () {
 
 
 
+        // ====================5. Account modification routes=============================
         Route::get('tasks', [TaskController::class, 'view'])->name('tasks');
+        Route::inertia('create/task', 'tasks/CreateTaskForm')->name('create.task');
 
 
     });

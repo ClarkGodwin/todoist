@@ -38,11 +38,11 @@ import { route } from 'ziggy-js';
                 <AlertDialogCancel class="bg-frosted">
                     Cancel
                 </AlertDialogCancel>
-                <AlertDialogAction class="bg-red-500">
-                    <Link :href="route('delete.user')" method="delete">
+                <Link :href="route('delete.user')" method="delete">
+                    <AlertDialogAction class="bg-red-500">
                         Continue
-                    </Link>
-                </AlertDialogAction>
+                    </AlertDialogAction>
+                </Link>
             </AlertDialogFooter>
         </AlertDialogContent>
     </AlertDialog>
