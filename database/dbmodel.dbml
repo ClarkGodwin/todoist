@@ -22,7 +22,7 @@ Table Tasks {
     user_id int [ref: >Users.id]
     title varchar(15) [not null]
     description text [null]
-    day datetime [not null]
+    day date [not null]
     status task_statuses [default: task_statuses.to_do]
     created_at datetime
     updated_at datetime

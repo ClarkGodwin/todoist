@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTaskRequest;
-use App\Http\Requests\UpdateTaskRequest;
+use App\Http\Requests\Task\CreateTask;
 use App\Models\Task;
 use App\Models\User;
 use Inertia\Inertia;
@@ -24,7 +23,7 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(CreateTask $request)
     {
         //
     }

@@ -57,9 +57,10 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-        // ====================5. Account modification routes=============================
+        // ====================6. Tasks routes=============================
         Route::get('tasks', [TaskController::class, 'view'])->name('tasks');
         Route::inertia('create/task', 'tasks/CreateTaskForm')->name('create.task');
+        Route::post('create/task', [TaskController::class, 'create'])->name('create.task');
 
 
     });

@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Task;
 use App\Models\User;
+use Auth;
 use Illuminate\Auth\Access\Response;
 
 class TaskPolicy
@@ -29,7 +30,7 @@ class TaskPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return Auth::user()->id == $user->id;
     }
 
     /**
