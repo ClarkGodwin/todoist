@@ -25,7 +25,17 @@ class TaskController extends Controller
      */
     public function create(CreateTask $request)
     {
-        //
+        if($request->day == null){
+            $request->day = now()->toDateString();
+        }
+        $task = Task::create([
+            'user_id'=> auth()->user()->id,
+            'title'=> $request->title,
+            'description'=> $request->description,
+            'day'=> $request->day,
+        ]);
+        Inertia::flash('success','Task created');
+        return back();
     }
 
     /**

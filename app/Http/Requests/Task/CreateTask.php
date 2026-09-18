@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Task;
 
+use App\Models\Task;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -13,7 +14,7 @@ class CreateTask extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can("create");
+        return $this->user()->can("create", Task::class);
     }
 
     /**
@@ -25,8 +26,8 @@ class CreateTask extends FormRequest
     {
         return [
             "title"=> "required|alpha|max:100|min:3",
-            "description"=> "alpha|min:5|max:255",
-            "date"=> [Rule::date()->afterOrEqual(today())],
+            "description"=> "alpha|min:5|max:255|nullable",
+            "day"=> [Rule::date()->afterOrEqual(today()), 'nullable'],
         ];
     }
 }

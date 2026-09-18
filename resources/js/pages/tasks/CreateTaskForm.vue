@@ -22,8 +22,8 @@ const inputs = [
     {
         id: 1,
         type: 'text',
-        label: 'Name',
-        name: 'name',
+        label: 'Title',
+        name: 'title',
     },
     {
         id: 2,
@@ -34,14 +34,15 @@ const inputs = [
     {
         id: 3,
         type: 'date',
-        label: 'Date',
-        name: 'date',
+        label: 'Day',
+        name: 'day',
     },
 ]
 
 </script>
 
 <template>
-    <Form title="Create a new task" :inputs="inputs" :errors="errors" action="register">
+    <Form title="Create a new task" :inputs="inputs" :errors="errors" action="create.task" method="post">
+        If you don't specify a  date, the default pic will be today
     </Form>
 </template>

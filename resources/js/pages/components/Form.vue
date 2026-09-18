@@ -21,7 +21,7 @@ interface InputElement {
     type: string,
     name: string,
     label?: string,
-    value?: string,
+    value?: string | number,
 }
 
 const props = defineProps<{
