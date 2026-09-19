@@ -57,7 +57,12 @@ function switchStatus(task_id : number){
 
     <div v-else>
         <div class="m-10">
-            <div class="text-dark-surface-400 font-bold text-[20px] mb-2">{{ day }}</div>
+            <div class="flex items-center gap-2">
+                <div class="text-dark-surface-400 font-bold text-[20px] mb-2">{{ day }}</div>
+                <Link :href="route('create.task')">
+                    <button class="bg-dark-surface-400 hover:cursor-pointer font-bold text-surface-400">Create a task</button>
+                </Link>
+            </div>
             <div class="flex flex-col gap-1">
                 <div v-for="task in props.tasks" :key="task.id" class="ml-7">
                     <div class="flex items-center gap-2">
@@ -71,9 +76,9 @@ function switchStatus(task_id : number){
                             class="size-[16px] text-dark-surface-400 hover:cursor-pointer"/>
                         </Link>
 
-                        <div
+                        <Link
                         :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through']"
-                        >{{ task.title }}</div>
+                        >{{ task.title }}</Link>
                     </div>
                 </div>
 
