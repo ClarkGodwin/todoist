@@ -59,11 +59,16 @@ Route::middleware(['auth'])->group(function () {
 
         // ====================6. Tasks routes=============================
         Route::get('tasks', [TaskController::class, 'view'])->name('tasks');
+
+        //create routes
         Route::get('create/task/{day?}', [TaskController::class, 'viewTaskForm'])->name('create.task');
         Route::post('create/task', [TaskController::class, 'create'])->name('create.task');
+
         Route::post('switchStatus/task/{task_id}', [TaskController::class, 'switchTaskStatus'])->name('switchStatus');
 
+        //update routes
         Route::get('update/task/{id}', [TaskController::class, 'updateTaskForm'])->name('update.task.form');
+        Route::post('update/task', [TaskController::class, 'update'])->name('update.task');
 
 
     });

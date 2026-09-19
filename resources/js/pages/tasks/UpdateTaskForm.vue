@@ -43,6 +43,12 @@ const inputs = [
         name: 'day',
         value: props.task.description
     },
+    {
+        id: 4,
+        type: 'hidden',
+        name: 'id',
+        value: props.task.id
+    }
 ]
 
 </script>
