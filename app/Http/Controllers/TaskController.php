@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TaskStatus;
 use App\Http\Requests\Task\CreateTask;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class TaskController extends Controller
@@ -15,7 +17,9 @@ class TaskController extends Controller
     public function view()
     {
         $tasks = Task::where("user_id", auth()->user()->id)
-        ->select(['id', 'title', 'description', 'status', 'day'])->get();
+        ->where("day", now()->toDateString())
+        ->select(['id', 'title', 'description', 'status', 'day'])
+        ->get();
 
         return Inertia::render('tasks/Tasks', compact('tasks'));
     }
@@ -34,7 +38,16 @@ class TaskController extends Controller
             'description'=> $request->description,
             'day'=> $request->day,
         ]);
+
         Inertia::flash('success','Task created');
+        return redirect()->route('tasks');
+    }
+
+    function switchTaskStatus(Request $request){
+        $task = Task::find($request->task_id);
+        $task->status = $task->status == TaskStatus::ToDo ? TaskStatus::Done : TaskStatus::ToDo;
+        $task->save();
+
         return back();
     }
 

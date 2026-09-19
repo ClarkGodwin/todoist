@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('tasks', [TaskController::class, 'view'])->name('tasks');
         Route::inertia('create/task', 'tasks/CreateTaskForm')->name('create.task');
         Route::post('create/task', [TaskController::class, 'create'])->name('create.task');
+        Route::post('switchStatus/task/{task_id}', [TaskController::class, 'switchTaskStatus'])->name('switchStatus');
 
 
     });
