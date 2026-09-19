@@ -41,7 +41,7 @@ const inputs = [
         type: 'date',
         label: 'Day',
         name: 'day',
-        value: props.task.description
+        value: props.task.day
     },
     {
         id: 4,
@@ -54,7 +54,7 @@ const inputs = [
 </script>
 
 <template>
-    <Form title="Create a new task" :inputs="inputs" :errors="errors" action="create.task" method="post">
+    <Form title="Update your task" :inputs="inputs" :errors="errors" action="update.task" method="post">
         If you don't specify a  date, the default pic will be today
     </Form>
 </template>

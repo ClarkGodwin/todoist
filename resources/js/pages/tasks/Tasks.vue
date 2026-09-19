@@ -74,10 +74,14 @@ function switchStatus(task_id: number) {
                                 class="size-[16px] text-dark-surface-400 hover:cursor-pointer" />
                         </Link>
 
-                        <span :title="task.description">{{ task.title }}</span>
+                        <span :title="task.description"
+                            :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through']"
+                            >
+                            {{ task.title }}
+                        </span>
 
-                        <Link :href="route('home')">
-                            <PenSquareIcon/>
+                        <Link :href="route('update.task.form', task.id)">
+                            <PenSquareIcon />
                         </Link>
                         <Trash2Icon />
                     </div>
