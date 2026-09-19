@@ -11,7 +11,7 @@ import { Task } from '@/types/tasks.js';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 import { computed, ref } from 'vue';
-import { Circle, CircleDot } from '@lucide/vue';
+import { Circle, CircleDot, CirclePlus } from '@lucide/vue';
 
 const props = defineProps<{
     auth: {
@@ -78,6 +78,10 @@ function switchStatus(task_id : number){
                 </div>
 
             </div>
+
+            <Link :href="route('create.task', tasks[0].day)">
+                <CirclePlus/>
+            </Link>
         </div>
     </div>
 </template>

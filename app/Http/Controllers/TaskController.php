@@ -24,6 +24,11 @@ class TaskController extends Controller
         return Inertia::render('tasks/Tasks', compact('tasks'));
     }
 
+    public function viewTaskForm(Request $request){
+        $day = $request->day;
+        return Inertia::render('tasks/CreateTaskForm', compact('day'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
