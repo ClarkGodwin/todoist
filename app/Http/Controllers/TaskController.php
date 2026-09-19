@@ -56,29 +56,11 @@ class TaskController extends Controller
         return back();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreTaskRequest $request)
-    {
-        //
+    public function updateTaskForm(Request $request){
+        $task = Task::find($request->id);
+        return Inertia::render('tasks/UpdateTaskForm', compact('task'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Task $task)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

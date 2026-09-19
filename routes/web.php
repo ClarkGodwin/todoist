@@ -63,6 +63,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('create/task', [TaskController::class, 'create'])->name('create.task');
         Route::post('switchStatus/task/{task_id}', [TaskController::class, 'switchTaskStatus'])->name('switchStatus');
 
+        Route::get('update/task/{id}', [TaskController::class, 'updateTaskForm'])->name('update.task.form');
+
 
     });
 });
