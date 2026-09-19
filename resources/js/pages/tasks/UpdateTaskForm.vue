@@ -9,6 +9,7 @@ import { User } from '@/types/auth.js';
 import UserSidebar from '../components/UserSidebar.vue';
 import Form from '../components/Form.vue';
 import { usePage } from '@inertiajs/vue3';
+import { Task } from '@/types/tasks.js';
 
 const props = defineProps<{
     auth: {
@@ -16,10 +17,8 @@ const props = defineProps<{
     }
     //to catch the errors sent by the request controller and pass them down to the custom Form component
     errors?: Record<string, string>
-    day?: string
+    task: Task
 }>()
-
-const day = usePage().props.day
 
 //list to go through to easily render the inputs using the Input component from the component folder
 const inputs = [
@@ -28,19 +27,21 @@ const inputs = [
         type: 'text',
         label: 'Title',
         name: 'title',
+        value: props.task.title
     },
     {
         id: 2,
         type: 'textarea',
         label: 'Description',
         name: 'description',
+        value: props.task.description
     },
     {
         id: 3,
         type: 'date',
         label: 'Day',
         name: 'day',
-        value: props.day
+        value: props.task.description
     },
 ]
 

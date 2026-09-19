@@ -11,7 +11,7 @@ import { Task } from '@/types/tasks.js';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 import { computed, ref } from 'vue';
-import { Circle, CircleDot, CirclePlus } from '@lucide/vue';
+import { Circle, CircleDot, CirclePlus, PenSquareIcon, Trash2Icon } from '@lucide/vue';
 
 const props = defineProps<{
     auth: {
@@ -37,7 +37,7 @@ const isToday = computed(() => {
     return targetDate.value === getLocalDateString();
 });
 
-function switchStatus(task_id : number){
+function switchStatus(task_id: number) {
     props.tasks.forEach(task => {
     });
 }
@@ -60,32 +60,33 @@ function switchStatus(task_id : number){
             <div class="flex items-center gap-2">
                 <div class="text-dark-surface-400 font-bold text-[20px] mb-2">{{ day }}</div>
                 <Link :href="route('create.task')">
-                    <button class="bg-dark-surface-400 hover:cursor-pointer font-bold text-surface-400">Create a task</button>
+                    <button class="bg-dark-surface-400 hover:cursor-pointer font-bold text-surface-400">Create a
+                        task</button>
                 </Link>
             </div>
             <div class="flex flex-col gap-1">
                 <div v-for="task in props.tasks" :key="task.id" class="ml-7">
                     <div class="flex items-center gap-2">
                         <Link :href="route('switchStatus', task.id)" method="post">
-                            <Circle
-                            v-if="task.status == 'to_do'"
-                            class="size-[16px] hover:cursor-pointer"/>
+                            <Circle v-if="task.status == 'to_do'" class="size-[16px] hover:cursor-pointer" />
 
-                            <CircleDot
-                            v-if="task.status == 'done'"
-                            class="size-[16px] text-dark-surface-400 hover:cursor-pointer"/>
+                            <CircleDot v-if="task.status == 'done'"
+                                class="size-[16px] text-dark-surface-400 hover:cursor-pointer" />
                         </Link>
 
-                        <Link
-                        :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through']"
-                        >{{ task.title }}</Link>
+                        <span :title="task.description">{{ task.title }}</span>
+
+                        <Link :href="route('home')">
+                            <PenSquareIcon/>
+                        </Link>
+                        <Trash2Icon />
                     </div>
                 </div>
 
             </div>
 
             <Link :href="route('create.task', tasks[0].day)">
-                <CirclePlus/>
+                <CirclePlus />
             </Link>
         </div>
     </div>
