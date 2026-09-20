@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\TaskStatus;
 use App\Http\Requests\Task\CreateTask;
+use App\Http\Requests\Task\DatePicker;
 use App\Http\Requests\Task\Delete;
 use App\Http\Requests\Task\MoveToDate;
 use App\Http\Requests\Task\UpdateTask;
@@ -91,6 +92,10 @@ class TaskController extends Controller
 
         Inertia::flash('success','Updates registered');
         return back();
+    }
+
+    public function datePicker(DatePicker $request){
+        dd($request->date);
     }
 
     /**
