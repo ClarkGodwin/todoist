@@ -83,7 +83,9 @@ function switchStatus(task_id: number) {
                         <Link :href="route('update.task.form', task.id)">
                             <PenSquareIcon/>
                         </Link>
-                        <Move/>
+                        <Link :href="route('move.to.date.form', task.id)">
+                            <Move/>
+                        </Link>
                         <Trash2Icon />
                     </div>
                 </div>
