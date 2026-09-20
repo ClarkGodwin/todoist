@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\TaskStatus;
 use App\Http\Requests\Task\CreateTask;
+use App\Http\Requests\Task\MoveToDate;
 use App\Http\Requests\Task\UpdateTask;
 use App\Models\Task;
 use App\Models\User;
@@ -71,6 +72,20 @@ class TaskController extends Controller
         $task = Task::find($request->id);
         $task->title = $request->title;
         $task->description = $request->description;
+        $task->save();
+
+        Inertia::flash('success','Updates registered');
+        return back();
+    }
+
+    public function moveToDateForm(Request $request){
+        $task = Task::find($request->id);
+        return Inertia::render('tasks/MoveTaskToDateForm', compact('task'));
+    }
+
+    public function moveToDate(MoveToDate $request){
+        $task = Task::find($request->id);
+        $task->day = $request->day;
         $task->save();
 
         Inertia::flash('success','Updates registered');
