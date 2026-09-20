@@ -11,7 +11,7 @@ import { Task } from '@/types/tasks.js';
 import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 import { computed, ref } from 'vue';
-import { Circle, CircleDot, CirclePlus, PenSquareIcon, Trash2Icon } from '@lucide/vue';
+import { Circle, CircleDot, CirclePlus, Move, PenSquareIcon, Trash2Icon } from '@lucide/vue';
 
 const props = defineProps<{
     auth: {
@@ -81,8 +81,9 @@ function switchStatus(task_id: number) {
                         </span>
 
                         <Link :href="route('update.task.form', task.id)">
-                            <PenSquareIcon />
+                            <PenSquareIcon/>
                         </Link>
+                        <Move/>
                         <Trash2Icon />
                     </div>
                 </div>
