@@ -12,6 +12,13 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Form } from '@inertiajs/vue3';
+import { route } from 'ziggy-js';
+
+defineProps<{
+    errors?: Record<string, string>
+}>()
+
 </script>
 
 <template>
@@ -23,12 +30,14 @@ import { Input } from '@/components/ui/input'
             <AlertDialogHeader>
                 <AlertDialogTitle>Pick a date to see the tasks planned for that day</AlertDialogTitle>
                 <AlertDialogDescription>
-                    <div class="flex w-full max-w-sm items-center space-x-2">
+                    <Form :action="route('date.picker')" method="post"
+                        class="flex w-full max-w-sm items-center space-x-2">
                         <Input type="date" placeholder="Day" name="day" />
+                        <div v-if="errors!['day'] != undefined" class="mt-2 text-red-500">{{ errors!['day'] }}</div>
                         <Button type="submit">
                             Submit
                         </Button>
-                    </div>
+                    </Form>
                 </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
