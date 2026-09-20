@@ -20,24 +20,17 @@ const props = defineProps<{
 const inputs = [
     {
         id: 1,
-        type: 'text',
-        label: 'Title',
-        name: 'title',
-        value: props.task.title
-    },
-    {
-        id: 2,
-        type: 'textarea',
-        label: 'Description',
-        name: 'description',
-        value: props.task.description
-    },
-    {
-        id: 4,
         type: 'hidden',
         name: 'id',
         value: props.task.id
-    }
+    },
+    {
+        id: 2,
+        type: 'date',
+        label: 'Date',
+        name: 'day',
+        value: props.task.day
+    },
 ]
 
 </script>
