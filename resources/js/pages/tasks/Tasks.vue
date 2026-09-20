@@ -86,7 +86,9 @@ function switchStatus(task_id: number) {
                         <Link :href="route('move.to.date.form', task.id)">
                             <Move/>
                         </Link>
-                        <Trash2Icon />
+                        <Link :href="route('delete.task', task.id)" method="post" class="hover:cursor-pointer">
+                            <Trash2Icon />
+                        </Link>
                     </div>
                 </div>
 
