@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\TaskStatus;
 use App\Http\Requests\Task\CreateTask;
+use App\Http\Requests\Task\Delete;
 use App\Http\Requests\Task\MoveToDate;
 use App\Http\Requests\Task\UpdateTask;
 use App\Models\Task;
@@ -95,8 +96,12 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Delete $request)
     {
-        //
+        $task = Task::find($request->id);
+        $task->delete();
+
+        Inertia::flash('success','Task deleted');
+        return back();
     }
 }
