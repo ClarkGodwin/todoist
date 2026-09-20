@@ -8,13 +8,9 @@ export default {
 import { User } from '@/types/auth.js';
 import UserSidebar from '../components/UserSidebar.vue';
 import Form from '../components/Form.vue';
-import { usePage } from '@inertiajs/vue3';
 import { Task } from '@/types/tasks.js';
 
 const props = defineProps<{
-    auth: {
-        user: User
-    }
     //to catch the errors sent by the request controller and pass them down to the custom Form component
     errors?: Record<string, string>
     task: Task

@@ -11,9 +11,6 @@ import Form from '../components/Form.vue';
 import { usePage } from '@inertiajs/vue3';
 
 const props = defineProps<{
-    auth: {
-        user: User
-    }
     //to catch the errors sent by the request controller and pass them down to the custom Form component
     errors?: Record<string, string>
     day?: string
