@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('moveToDate/task/{id}', [TaskController::class, 'moveToDateForm'])->name('move.to.date.form');
         Route::post('moveToDate/task', [TaskController::class, 'moveToDate'])->name('move.to.date');
 
+        Route::post('delete/task/{id}', [TaskController::class, 'destroy'])->name('destroy.task');
 
     });
 });
