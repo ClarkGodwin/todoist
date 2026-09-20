@@ -12,6 +12,7 @@ import { Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 import { computed, ref } from 'vue';
 import { Circle, CircleDot, CirclePlus, Move, PenSquareIcon, Trash2Icon } from '@lucide/vue';
+import DatePicker from '../components/DatePicker.vue';
 
 const props = defineProps<{
     auth: {
@@ -57,8 +58,9 @@ function switchStatus(task_id: number) {
 
     <div v-else>
         <div class="m-10">
-            <div class="flex items-center gap-2">
-                <div class="text-dark-surface-400 font-bold text-[20px] mb-2">{{ day }}</div>
+            <div class="flex items-center gap-2 mb-3">
+                <!-- <div class="text-dark-surface-400 font-bold text-[20px] mb-2">{{ day }}</div> -->
+                <DatePicker>{{ day }}</DatePicker>
                 <Link :href="route('create.task')">
                     <button class="bg-dark-surface-400 hover:cursor-pointer font-bold text-surface-400">Create a
                         task</button>
