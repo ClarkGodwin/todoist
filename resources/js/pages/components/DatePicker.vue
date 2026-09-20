@@ -32,11 +32,14 @@ defineProps<{
                 <AlertDialogDescription>
                     <Form :action="route('date.picker')" method="post"
                         class="flex w-full max-w-sm items-center space-x-2">
-                        <Input type="date" placeholder="Day" name="day" />
-                        <div v-if="errors!['day'] != undefined" class="mt-2 text-red-500">{{ errors!['day'] }}</div>
-                        <Button type="submit">
-                            Submit
-                        </Button>
+                        <div class="flex flex-col w-full">
+                            <Input type="date" placeholder="Day" name="day" />
+                            <div class="text-red-500">test</div>
+                        </div>
+                        <div class="flex flex-col">
+                            <Button type="submit"> Submit </Button>
+                            <div class="text-transparent">transparent text for design</div>
+                        </div>
                     </Form>
                 </AlertDialogDescription>
             </AlertDialogHeader>

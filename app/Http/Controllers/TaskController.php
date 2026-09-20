@@ -95,7 +95,7 @@ class TaskController extends Controller
     }
 
     public function datePicker(DatePicker $request){
-        dd($request->date);
+        dd($request->day);
     }
 
     /**
