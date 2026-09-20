@@ -37,13 +37,6 @@ const inputs = [
         value: props.task.description
     },
     {
-        id: 3,
-        type: 'date',
-        label: 'Day',
-        name: 'day',
-        value: props.task.day
-    },
-    {
         id: 4,
         type: 'hidden',
         name: 'id',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\TaskStatus;
 use App\Http\Requests\Task\CreateTask;
+use App\Http\Requests\Task\UpdateTask;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -65,12 +66,11 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CreateTask $request)
+    public function update(UpdateTask $request)
     {
         $task = Task::find($request->id);
         $task->title = $request->title;
         $task->description = $request->description;
-        $task->day = $request->day;
         $task->save();
 
         Inertia::flash('success','Updates registered');
