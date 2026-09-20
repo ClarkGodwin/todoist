@@ -30,11 +30,11 @@ defineProps<{
             <AlertDialogHeader>
                 <AlertDialogTitle>Pick a date to see the tasks planned for that day</AlertDialogTitle>
                 <AlertDialogDescription>
-                    <Form :action="route('date.picker')" method="post"
+                    <Form :action="route('date.picker')" method="post" #default="{errors: formErrors}"
                         class="flex w-full max-w-sm items-center space-x-2">
                         <div class="flex flex-col w-full">
                             <Input type="date" placeholder="Day" name="day" />
-                            <div class="text-red-500">test</div>
+                            <div v-if="formErrors['day']" class="text-red-500">{{ formErrors['day'] }}</div>
                         </div>
                         <div class="flex flex-col">
                             <Button type="submit"> Submit </Button>
