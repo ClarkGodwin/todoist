@@ -24,15 +24,15 @@ import { Input } from '@/components/ui/input'
                 <AlertDialogTitle>Pick a date to see the tasks planned for that day</AlertDialogTitle>
                 <AlertDialogDescription>
                     <div class="flex w-full max-w-sm items-center space-x-2">
-                        <Input type="email" placeholder="Email" />
+                        <Input type="date" placeholder="Day" name="day" />
                         <Button type="submit">
-                            Subscribe
+                            Submit
                         </Button>
                     </div>
                 </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogCancel class="bg-dark-surface-400 text-surface-400 font-bold">Cancel</AlertDialogCancel>
             </AlertDialogFooter>
         </AlertDialogContent>
     </AlertDialog>
