@@ -19,13 +19,12 @@ const props = defineProps<{
         user: User
     }
     tasks: Task[]
+    day: string // the day on which the user would like to see the tasks
 }>()
 
-const day = ref('Today')
+const targetDate = ref<string>(props.day); // YYYY-MM-DD format
 
-const targetDate = ref<string>(props.tasks[0].day); // YYYY-MM-DD format
-
-// Helper to get local YYYY-MM-DD string
+// Helper to get local YYYY-MM-DD string, a.k.a the current date
 const getLocalDateString = (d = new Date()): string => {
     const year = d.getFullYear();
     const month = String(d.getMonth() + 1).padStart(2, '0');
@@ -38,10 +37,7 @@ const isToday = computed(() => {
     return targetDate.value === getLocalDateString();
 });
 
-function switchStatus(task_id: number) {
-    props.tasks.forEach(task => {
-    });
-}
+const day = isToday ? ref('Today') : ref(props.day)
 
 </script>
 
@@ -59,7 +55,6 @@ function switchStatus(task_id: number) {
     <div v-else>
         <div class="m-10">
             <div class="flex items-center gap-2 mb-3">
-                <!-- <div class="text-dark-surface-400 font-bold text-[20px] mb-2">{{ day }}</div> -->
                 <DatePicker>{{ day }}</DatePicker>
                 <Link :href="route('create.task')">
                     <button class="bg-dark-surface-400 hover:cursor-pointer font-bold text-surface-400">Create a
@@ -77,16 +72,15 @@ function switchStatus(task_id: number) {
                         </Link>
 
                         <span :title="task.description"
-                            :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through']"
-                            >
+                            :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through']">
                             {{ task.title }}
                         </span>
 
                         <Link :href="route('update.task.form', task.id)">
-                            <PenSquareIcon/>
+                            <PenSquareIcon />
                         </Link>
                         <Link :href="route('move.to.date.form', task.id)">
-                            <Move/>
+                            <Move />
                         </Link>
                         <Link :href="route('delete.task', task.id)" method="post" class="hover:cursor-pointer">
                             <Trash2Icon />

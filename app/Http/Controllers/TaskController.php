@@ -25,7 +25,9 @@ class TaskController extends Controller
         ->select(['id', 'title', 'description', 'status', 'day'])
         ->get();
 
-        return Inertia::render('tasks/Tasks', compact('tasks'));
+        $day = now()->toDateString();
+
+        return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
     }
 
     public function viewTaskForm(Request $request){
