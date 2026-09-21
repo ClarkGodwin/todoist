@@ -109,7 +109,6 @@ class TaskController extends Controller
         $tasks = Task::where('day', $request->day)->get();
         $day = $request->day;
 
-        Inertia::flash('status','We are '. $day . ' in the page');
         return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
     }
 

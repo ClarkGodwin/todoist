@@ -36,7 +36,7 @@ const inputs = [
 </script>
 
 <template>
-    <Form title="Update your task" :inputs="inputs" :errors="errors" action="move.to.date" method="post">
+    <Form title="Move your task to another day" :inputs="inputs" :errors="errors" action="move.to.date" method="post">
         If you don't specify a  date, the default pic will be today
     </Form>
 </template>

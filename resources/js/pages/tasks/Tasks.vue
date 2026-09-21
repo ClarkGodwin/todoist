@@ -57,23 +57,19 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
 
     <div v-else>
         <div class="m-10">
-            <div class="flex items-center gap-2 mb-3">
+            <div class="mb-task-mb">
                 <DatePicker>
-                    <span class="text-dark-surface-400 font-bold text-[20px]">{{ displayedDay }}</span>
+                    <span class="text-dark-surface-400 font-bold text-task-h">{{ displayedDay }}</span>
                 </DatePicker>
-                <Link :href="route('create.task')">
-                    <button class="bg-dark-surface-400 hover:cursor-pointer font-bold text-surface-400">Create a
-                        task</button>
-                </Link>
             </div>
-            <div class="flex flex-col gap-1">
+            <div class="flex flex-col gap-1 mb-task-mb">
                 <div v-for="task in props.tasks" :key="task.id" class="ml-7">
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-task-gap text-task-t">
                         <Link :href="route('switchStatus', task.id)" method="post">
-                            <Circle v-if="task.status == 'to_do'" class="size-[16px] hover:cursor-pointer" />
+                            <Circle v-if="task.status == 'to_do'" class="size-(--text-task-t) hover:cursor-pointer" />
 
                             <CircleDot v-if="task.status == 'done'"
-                                class="size-[16px] text-dark-surface-400 hover:cursor-pointer" />
+                                class="size-(--text-task-t) text-dark-surface-400 hover:cursor-pointer" />
                         </Link>
 
                         <span :title="task.description"
@@ -82,13 +78,13 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
                         </span>
 
                         <Link :href="route('update.task.form', task.id)">
-                            <PenSquareIcon />
+                            <PenSquareIcon :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']"/>
                         </Link>
                         <Link :href="route('move.to.date.form', task.id)">
-                            <Move />
+                            <Move :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
                         <Link :href="route('delete.task', task.id)" method="post" class="hover:cursor-pointer">
-                            <Trash2Icon />
+                            <Trash2Icon :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
                     </div>
                 </div>
@@ -96,7 +92,7 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
             </div>
 
             <Link :href="route('create.task', day)">
-                <CirclePlus />
+                <CirclePlus class="size-(--text-task-h)" />
             </Link>
         </div>
     </div>
