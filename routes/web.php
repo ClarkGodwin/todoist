@@ -72,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('moveToDate/task/{id}', [TaskController::class, 'moveToDateForm'])->name('move.to.date.form');
         Route::post('moveToDate/task', [TaskController::class, 'moveToDate'])->name('move.to.date');
 
-        Route::post('datePicker/task', [TaskController::class,'datePicker'])->name('date.picker');
+        Route::get('datePicker/task', [TaskController::class,'datePicker'])->name('date.picker');
 
         Route::post('delete/task/{id}', [TaskController::class, 'delete'])->name('delete.task');
 

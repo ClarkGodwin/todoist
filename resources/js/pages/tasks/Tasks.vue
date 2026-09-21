@@ -34,18 +34,21 @@ const getLocalDateString = (d = new Date()): string => {
 
 // Computed property returning boolean
 const isToday = computed(() => {
-    return targetDate.value === getLocalDateString();
+    return props.day === getLocalDateString();
 });
 
-const day = isToday ? ref('Today') : ref(props.day)
+const displayedDay = isToday.value ? ref('Today') : ref(props.day)
 
 </script>
 
 <template>
     <div v-if="props.tasks.length === 0"
         class="flex flex-col justify-center items-center gap-4 text-dark-surface-400 w-fit mx-auto text-tasks-noTasks">
-        <span>It looks like you don't have any tasks yet for {{ day.toLowerCase }}</span>
-        <Link :href="route('create.task')" class="">
+        <span>
+            It looks like you don't have any tasks yet for
+            <DatePicker>{{ displayedDay }}</DatePicker>
+        </span>
+        <Link :href="route('create.task', day)" class="">
             <button
                 class="bg-frosted text-white font-bold hover:cursor-pointer rounded-lg sm:rounded-xl p-tasks-p w-fit">Create
                 a task</button>
@@ -55,7 +58,9 @@ const day = isToday ? ref('Today') : ref(props.day)
     <div v-else>
         <div class="m-10">
             <div class="flex items-center gap-2 mb-3">
-                <DatePicker>{{ day }}</DatePicker>
+                <DatePicker>
+                    <span class="text-dark-surface-400 font-bold text-[20px]">{{ displayedDay }}</span>
+                </DatePicker>
                 <Link :href="route('create.task')">
                     <button class="bg-dark-surface-400 hover:cursor-pointer font-bold text-surface-400">Create a
                         task</button>
@@ -90,7 +95,7 @@ const day = isToday ? ref('Today') : ref(props.day)
 
             </div>
 
-            <Link :href="route('create.task', tasks[0].day)">
+            <Link :href="route('create.task', day)">
                 <CirclePlus />
             </Link>
         </div>

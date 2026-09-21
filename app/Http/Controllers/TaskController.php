@@ -50,8 +50,11 @@ class TaskController extends Controller
             'day'=> $request->day,
         ]);
 
+        $tasks = Task::where('day', $task->day)->get();
+        $day = $request->day;
+
         Inertia::flash('success','Task created');
-        return redirect()->route('tasks');
+        return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
     }
 
     function switchTaskStatus(Request $request){
@@ -78,8 +81,11 @@ class TaskController extends Controller
         $task->description = $request->description;
         $task->save();
 
+        $tasks = Task::where('day', $task->day)->get();
+        $day = $task->day;
+
         Inertia::flash('success','Updates registered');
-        return back();
+        return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
     }
 
     public function moveToDateForm(Request $request){
@@ -92,12 +98,19 @@ class TaskController extends Controller
         $task->day = $request->day;
         $task->save();
 
-        Inertia::flash('success','Updates registered');
-        return back();
+        $tasks = Task::where('day', $task->day)->get();
+        $day = $task->day;
+
+        Inertia::flash('success','Task moved to ' . $day);
+        return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
     }
 
     public function datePicker(DatePicker $request){
-        dd($request->day);
+        $tasks = Task::where('day', $request->day)->get();
+        $day = $request->day;
+
+        Inertia::flash('status','We are '. $day . ' in the page');
+        return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
     }
 
     /**

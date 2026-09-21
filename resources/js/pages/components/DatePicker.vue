@@ -23,14 +23,14 @@ defineProps<{
 
 <template>
     <AlertDialog>
-        <AlertDialogTrigger class="text-dark-surface-400 font-bold text-[20px]">
+        <AlertDialogTrigger>
             <slot></slot>
         </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>
                 <AlertDialogTitle>Pick a date to see the tasks planned for that day</AlertDialogTitle>
                 <AlertDialogDescription>
-                    <Form :action="route('date.picker')" method="post" #default="{ errors: formErrors }"
+                    <Form :action="route('date.picker')" method="get" #default="{ errors: formErrors }"
                         class="flex flex-col w-full max-w-sm space-x-2">
                         <Input type="date" placeholder="Day" name="day" />
                         <div v-if="formErrors['day']" class="text-red-500">{{ formErrors['day'] }}</div>
