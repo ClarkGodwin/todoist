@@ -75,16 +75,16 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
                         <span :title="task.description"
                             :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through']">
                             {{ task.title }}
-                        </span>ddlöasdkfjaösdkjkdsöldkaösdlf
+                        </span>
 
                         <Link :href="route('update.task.form', task.id)">
-                            <PenSquareIcon :class="[task.status == 'to_do' ? 'text-0' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']"/>
+                            <PenSquareIcon :class="[task.status == 'to_do' ? 'text-frosted' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']"/>
                         </Link>
                         <Link :href="route('move.to.date.form', task.id)">
-                            <Move :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
+                            <Move :class="[task.status == 'to_do' ? 'text-yellow-500' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
                         <Link :href="route('delete.task', task.id)" method="post" class="hover:cursor-pointer">
-                            <Trash2Icon :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
+                            <Trash2Icon :class="[task.status == 'to_do' ? 'text-red-500' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
                     </div>
                 </div>
