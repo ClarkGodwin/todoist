@@ -75,10 +75,10 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
                         <span :title="task.description"
                             :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through']">
                             {{ task.title }}
-                        </span>
+                        </span>ddlöasdkfjaösdkjkdsöldkaösdlf
 
                         <Link :href="route('update.task.form', task.id)">
-                            <PenSquareIcon :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']"/>
+                            <PenSquareIcon :class="[task.status == 'to_do' ? 'text-0' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']"/>
                         </Link>
                         <Link :href="route('move.to.date.form', task.id)">
                             <Move :class="[task.status == 'to_do' ? 'text-dark-surface-100' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />

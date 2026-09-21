@@ -9,7 +9,6 @@ use App\Http\Requests\Task\Delete;
 use App\Http\Requests\Task\MoveToDate;
 use App\Http\Requests\Task\UpdateTask;
 use App\Models\Task;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
