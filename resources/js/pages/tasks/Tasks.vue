@@ -62,7 +62,7 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
             <div class="flex flex-col gap-1 mb-task-mb">
                 <div v-for="task in props.tasks" :key="task.id" class="ml-7">
                     <div class="flex items-center gap-task-gap text-task-t">
-                        <Link :href="route('switchStatus', task.id)" method="post">
+                        <Link :href="route('switchStatus', task)" method="post">
                             <Circle v-if="task.status == 'to_do'" class="size-(--text-task-t) hover:cursor-pointer" />
 
                             <CircleDot v-if="task.status == 'done'"

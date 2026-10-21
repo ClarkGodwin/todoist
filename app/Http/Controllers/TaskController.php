@@ -63,9 +63,8 @@ class TaskController extends Controller
         return redirect()->route('tasks', ['day' => $day]);
     }
 
-    public function switchTaskStatus(Request $request)
+    public function switchTaskStatus(Request $request, Task $task)
     {
-        $task = Task::find($request->task_id);
         $task->status = $task->status == TaskStatus::ToDo ? TaskStatus::Done : TaskStatus::ToDo;
         $task->save();
 
