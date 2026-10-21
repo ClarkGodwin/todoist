@@ -71,10 +71,8 @@ class TaskController extends Controller
         return back();
     }
 
-    public function updateTaskForm(Request $request)
+    public function updateTaskForm(Task $task)
     {
-        $task = Task::find($request->id);
-
         return Inertia::render('tasks/UpdateTaskForm', compact('task'));
     }
 

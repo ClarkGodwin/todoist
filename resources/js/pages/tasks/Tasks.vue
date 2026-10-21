@@ -74,7 +74,7 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
                             {{ task.title }}
                         </span>
 
-                        <Link :href="route('update.task.form', task.id)">
+                        <Link :href="route('update.task.form', task)">
                             <PenSquareIcon
                                 :class="[task.status == 'to_do' ? 'text-frosted' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
