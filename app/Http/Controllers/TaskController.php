@@ -97,9 +97,8 @@ class TaskController extends Controller
         return Inertia::render('tasks/MoveTaskToDateForm', compact('task'));
     }
 
-    public function moveToDate(MoveToDate $request)
+    public function moveToDate(MoveToDate $request, Task $task)
     {
-        $task = Task::find($request->id);
         $task->day = $request->day;
         $task->save();
 

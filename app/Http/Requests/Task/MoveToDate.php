@@ -14,8 +14,7 @@ class MoveToDate extends FormRequest
      */
     public function authorize(): bool
     {
-        $task = Task::find($this->input("id"));
-        return $this->user()->can("update", $task, Task::class);
+        return $this->user()->can("update", $this->route('task'));
     }
 
     /**

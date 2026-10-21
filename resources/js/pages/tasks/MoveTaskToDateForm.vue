@@ -19,12 +19,6 @@ const props = defineProps<{
 //list to go through to easily render the inputs using the Input component from the component folder
 const inputs = [
     {
-        id: 1,
-        type: 'hidden',
-        name: 'id',
-        value: props.task.id
-    },
-    {
         id: 2,
         type: 'date',
         label: 'Date',
@@ -36,7 +30,7 @@ const inputs = [
 </script>
 
 <template>
-    <Form title="Move your task to another day" :inputs="inputs" :errors="errors" action="move.to.date" method="post">
+    <Form title="Move your task to another day" :inputs="inputs" :errors="errors" action="move.to.date" method="post" :parameter="task">
         If you don't specify a  date, the default pic will be today
     </Form>
 </template>
