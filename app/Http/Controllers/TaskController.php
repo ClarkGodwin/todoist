@@ -92,10 +92,8 @@ class TaskController extends Controller
         return redirect()->route('tasks', ['day' => $day]);
     }
 
-    public function moveToDateForm(Request $request)
+    public function moveToDateForm(Request $request, Task $task)
     {
-        $task = Task::find($request->id);
-
         return Inertia::render('tasks/MoveTaskToDateForm', compact('task'));
     }
 

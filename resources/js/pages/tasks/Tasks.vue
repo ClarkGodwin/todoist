@@ -78,7 +78,7 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
                             <PenSquareIcon
                                 :class="[task.status == 'to_do' ? 'text-frosted' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
-                        <Link :href="route('move.to.date.form', task.id)">
+                        <Link :href="route('move.to.date.form', task)">
                             <Move
                                 :class="[task.status == 'to_do' ? 'text-yellow-500' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
