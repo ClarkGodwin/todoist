@@ -109,12 +109,13 @@ class TaskController extends Controller
         $task->day = $request->day;
         $task->save();
 
-        $tasks = Task::where('day', $task->day)->get();
-        $day = $task->day;
+        $dayInInertiaMessage = $request->day == now()->toDateString() ? 'today' : $request->day;
 
-        Inertia::flash('success', 'Task moved to '.$day);
+        Inertia::flash('success', 'Task moved to '.$dayInInertiaMessage);
 
-        return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
+        $day = $request->day == now()->toDateString() ? null : $request->day;
+
+        return redirect()->route('tasks', ['day' => $day]);
     }
 
     public function datePicker(DatePicker $request)
