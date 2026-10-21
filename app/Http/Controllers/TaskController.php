@@ -120,10 +120,9 @@ class TaskController extends Controller
 
     public function datePicker(DatePicker $request)
     {
-        $tasks = Task::where('day', $request->day)->get();
         $day = $request->day;
 
-        return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
+        return redirect()->route('tasks', ['day' => $day]);
     }
 
     /**
