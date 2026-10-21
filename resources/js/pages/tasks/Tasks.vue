@@ -74,17 +74,17 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
                             {{ task.title }}
                         </span>
 
-                        <Link :href="route('update.task.form', task)">
+                        <Link v-if="task.status == 'to_do'" :href="route('update.task.form', task)">
                             <PenSquareIcon
-                                :class="[task.status == 'to_do' ? 'text-frosted' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
+                                class="text-frosted size-(--text-task-t)" />
                         </Link>
-                        <Link :href="route('move.to.date.form', task)">
+                        <Link v-if="task.status == 'to_do'" :href="route('move.to.date.form', task)">
                             <Move
-                                :class="[task.status == 'to_do' ? 'text-yellow-500' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
+                                class="text-yellow-500 size-(--text-task-t)" />
                         </Link>
-                        <Link :href="route('delete.task', task)" method="post" class="hover:cursor-pointer">
-                            <Trash2Icon
-                                :class="[task.status == 'to_do' ? 'text-red-500' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
+                        <Link v-if="task.status == 'to_do'" :href="route('delete.task', task)" method="post"
+                            class="hover:cursor-pointer">
+                            <Trash2Icon class="text-red-500 size-(--text-task-t)" />
                         </Link>
                     </div>
                 </div>
