@@ -56,12 +56,10 @@ class TaskController extends Controller
             'day' => $request->day,
         ]);
 
-        $tasks = Task::where('day', $task->day)->get();
-        $day = $request->day;
+        $day = $request->day == now()->toDateString() ? null : $request->day;
 
         Inertia::flash('success', 'Task created');
 
-        // return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
         return redirect()->route('tasks', ['day' => $day]);
     }
 
