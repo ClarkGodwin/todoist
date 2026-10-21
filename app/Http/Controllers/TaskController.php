@@ -56,9 +56,9 @@ class TaskController extends Controller
             'day' => $request->day,
         ]);
 
-        $day = $request->day == now()->toDateString() ? null : $request->day;
-
         Inertia::flash('success', 'Task created');
+
+        $day = $request->day == now()->toDateString() ? null : $request->day;
 
         return redirect()->route('tasks', ['day' => $day]);
     }
@@ -89,12 +89,11 @@ class TaskController extends Controller
         $task->description = $request->description;
         $task->save();
 
-        $tasks = Task::where('day', $task->day)->get();
-        $day = $task->day;
-
         Inertia::flash('success', 'Updates registered');
 
-        return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
+        $day = $request->day == now()->toDateString() ? null : $request->day;
+
+        return redirect()->route('tasks', ['day' => $day]);
     }
 
     public function moveToDateForm(Request $request)
