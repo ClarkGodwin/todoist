@@ -5,7 +5,6 @@ export default {
 </script>
 
 <script setup lang="ts">
-import { User } from '@/types/auth.js';
 import UserSidebar from '../components/UserSidebar.vue';
 import Form from '../components/Form.vue';
 import { Task } from '@/types/tasks.js';
@@ -32,19 +31,12 @@ const inputs = [
         name: 'description',
         value: props.task.description
     },
-    {
-        id: 4,
-        type: 'hidden',
-        name: 'id',
-        value: props.task.id
-    }
 ]
 
 </script>
 
 <template>
-    <Form title="Update your task" :inputs="inputs" :errors="errors" action="update.task" method="post">
-        If you don't specify a  date, the default pic will be today
+    <Form title="Update your task" :inputs="inputs" :errors="errors" action="update.task" method="post" :parameter="task">
     </Form>
 </template>
 

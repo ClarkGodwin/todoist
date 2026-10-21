@@ -68,7 +68,7 @@ Route::middleware(['auth'])->group(function () {
 
         //update routes
         Route::get('update/task/{task}', [TaskController::class, 'updateTaskForm'])->name('update.task.form');
-        Route::post('update/task', [TaskController::class, 'update'])->name('update.task');
+        Route::post('update/task/{task}', [TaskController::class, 'update'])->name('update.task');
         Route::get('moveToDate/task/{id}', [TaskController::class, 'moveToDateForm'])->name('move.to.date.form');
         Route::post('moveToDate/task', [TaskController::class, 'moveToDate'])->name('move.to.date');
 
