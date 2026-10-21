@@ -13,10 +13,9 @@ import { usePage } from '@inertiajs/vue3';
 const props = defineProps<{
     //to catch the errors sent by the request controller and pass them down to the custom Form component
     errors?: Record<string, string>
+
     day?: string
 }>()
-
-const day = usePage().props.day
 
 //list to go through to easily render the inputs using the Input component from the component folder
 const inputs = [

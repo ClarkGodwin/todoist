@@ -11,26 +11,33 @@ use App\Http\Requests\Task\UpdateTask;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return Response
      */
-    public function view()
+    public function view(?string $day = null)
     {
-        $tasks = Task::where("user_id", auth()->user()->id)
-        ->where("day", now()->toDateString())
-        ->select(['id', 'title', 'description', 'status', 'day'])
-        ->get();
+        if (! $day) {
+            $day = now()->toDateString();
+        }
 
-        $day = now()->toDateString();
+        $tasks = Task::where('user_id', auth()->user()->id)
+            ->where('day', $day)
+            ->select(['id', 'title', 'description', 'status', 'day'])
+            ->get();
 
         return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
     }
 
-    public function viewTaskForm(Request $request){
+    public function viewTaskForm(Request $request)
+    {
         $day = $request->day;
+
         return Inertia::render('tasks/CreateTaskForm', compact('day'));
     }
 
@@ -39,24 +46,27 @@ class TaskController extends Controller
      */
     public function create(CreateTask $request)
     {
-        if($request->day == null){
+        if ($request->day == null) {
             $request->day = now()->toDateString();
         }
         $task = Task::create([
-            'user_id'=> auth()->user()->id,
-            'title'=> $request->title,
-            'description'=> $request->description,
-            'day'=> $request->day,
+            'user_id' => auth()->user()->id,
+            'title' => $request->title,
+            'description' => $request->description,
+            'day' => $request->day,
         ]);
 
         $tasks = Task::where('day', $task->day)->get();
         $day = $request->day;
 
-        Inertia::flash('success','Task created');
-        return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
+        Inertia::flash('success', 'Task created');
+
+        // return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
+        return redirect()->route('tasks', ['day' => $day]);
     }
 
-    function switchTaskStatus(Request $request){
+    public function switchTaskStatus(Request $request)
+    {
         $task = Task::find($request->task_id);
         $task->status = $task->status == TaskStatus::ToDo ? TaskStatus::Done : TaskStatus::ToDo;
         $task->save();
@@ -64,11 +74,12 @@ class TaskController extends Controller
         return back();
     }
 
-    public function updateTaskForm(Request $request){
+    public function updateTaskForm(Request $request)
+    {
         $task = Task::find($request->id);
+
         return Inertia::render('tasks/UpdateTaskForm', compact('task'));
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -83,16 +94,20 @@ class TaskController extends Controller
         $tasks = Task::where('day', $task->day)->get();
         $day = $task->day;
 
-        Inertia::flash('success','Updates registered');
+        Inertia::flash('success', 'Updates registered');
+
         return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
     }
 
-    public function moveToDateForm(Request $request){
+    public function moveToDateForm(Request $request)
+    {
         $task = Task::find($request->id);
+
         return Inertia::render('tasks/MoveTaskToDateForm', compact('task'));
     }
 
-    public function moveToDate(MoveToDate $request){
+    public function moveToDate(MoveToDate $request)
+    {
         $task = Task::find($request->id);
         $task->day = $request->day;
         $task->save();
@@ -100,11 +115,13 @@ class TaskController extends Controller
         $tasks = Task::where('day', $task->day)->get();
         $day = $task->day;
 
-        Inertia::flash('success','Task moved to ' . $day);
+        Inertia::flash('success', 'Task moved to '.$day);
+
         return Inertia::render('tasks/Tasks', compact(['tasks', 'day']));
     }
 
-    public function datePicker(DatePicker $request){
+    public function datePicker(DatePicker $request)
+    {
         $tasks = Task::where('day', $request->day)->get();
         $day = $request->day;
 
@@ -114,12 +131,12 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete(Delete $request)
+    public function delete(Delete $request, Task $task)
     {
-        $task = Task::find($request->id);
         $task->delete();
 
-        Inertia::flash('success','Task deleted');
+        Inertia::flash('success', 'Task deleted');
+
         return back();
     }
 }

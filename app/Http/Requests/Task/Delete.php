@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Task;
 
-use App\Models\Task;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,8 +12,7 @@ class Delete extends FormRequest
      */
     public function authorize(): bool
     {
-        $task = Task::find($this->route("id"));
-        return $this->user()->can("update", $task, Task::class);
+        return $this->user()->can("update", $this->route('task'));
     }
 
     /**

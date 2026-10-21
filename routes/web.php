@@ -58,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
 
 
         // ====================6. Tasks routes=============================
-        Route::get('tasks', [TaskController::class, 'view'])->name('tasks');
+        Route::get('tasks/{day?}', [TaskController::class, 'view'])->name('tasks');
 
         //create routes
         Route::get('create/task/{day?}', [TaskController::class, 'viewTaskForm'])->name('create.task');
@@ -74,7 +74,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('datePicker/task', [TaskController::class,'datePicker'])->name('date.picker');
 
-        Route::post('delete/task/{id}', [TaskController::class, 'delete'])->name('delete.task');
+        Route::post('delete/task/{task}', [TaskController::class, 'delete'])->name('delete.task');
 
     });
 });

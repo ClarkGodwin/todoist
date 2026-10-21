@@ -22,8 +22,6 @@ const props = defineProps<{
     day: string // the day on which the user would like to see the tasks
 }>()
 
-const targetDate = ref<string>(props.day); // YYYY-MM-DD format
-
 // Helper to get local YYYY-MM-DD string, a.k.a the current date
 const getLocalDateString = (d = new Date()): string => {
     const year = d.getFullYear();
@@ -32,7 +30,6 @@ const getLocalDateString = (d = new Date()): string => {
     return `${year}-${month}-${day}`;
 };
 
-// Computed property returning boolean
 const isToday = computed(() => {
     return props.day === getLocalDateString();
 });
@@ -78,13 +75,16 @@ const displayedDay = isToday.value ? ref('Today') : ref(props.day)
                         </span>
 
                         <Link :href="route('update.task.form', task.id)">
-                            <PenSquareIcon :class="[task.status == 'to_do' ? 'text-frosted' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']"/>
+                            <PenSquareIcon
+                                :class="[task.status == 'to_do' ? 'text-frosted' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
                         <Link :href="route('move.to.date.form', task.id)">
-                            <Move :class="[task.status == 'to_do' ? 'text-yellow-500' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
+                            <Move
+                                :class="[task.status == 'to_do' ? 'text-yellow-500' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
-                        <Link :href="route('delete.task', task.id)" method="post" class="hover:cursor-pointer">
-                            <Trash2Icon :class="[task.status == 'to_do' ? 'text-red-500' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
+                        <Link :href="route('delete.task', task)" method="post" class="hover:cursor-pointer">
+                            <Trash2Icon
+                                :class="[task.status == 'to_do' ? 'text-red-500' : 'text-dark-surface-400 line-through', 'size-(--text-task-t)']" />
                         </Link>
                     </div>
                 </div>
